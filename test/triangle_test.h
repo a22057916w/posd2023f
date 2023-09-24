@@ -18,6 +18,7 @@ TEST(TriangleSuite, TriangleAsShape) {
     ASSERT_DOUBLE_EQ(12.0, t->perimeter());
 }
 
+// operaion(Compare comp) overloading for sort()
 bool lessThanByPerimeter(Shape * a, Shape * b) {
     return a->perimeter() < b->perimeter();
 }
