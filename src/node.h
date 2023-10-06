@@ -11,9 +11,9 @@ public:
     
     string path() const;
     
-    void add(Node * node);
+    virtual void add(Node * node) = 0;
 
-    void remove(string path);
+    virtual void remove(string path) = 0;
     
     Node * getChildByName(const char * name) const;
 
