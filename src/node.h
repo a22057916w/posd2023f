@@ -1,15 +1,15 @@
 #if !defined(NODE_H)
 #define NODE_H
 
-#include<string>
+#include <string>
 
 using namespace std;
 
 class Node {
 public:
-    string name() const;
+    virtual string name() const = 0;
     
-    string path() const;
+    virtual string path() const = 0;
     
     virtual void add(Node * node) = 0;
 
@@ -21,7 +21,7 @@ public:
 
     int numberOfFiles() const;
 
-    Iterator * createIterator();
+    // Iterator * createIterator();
 };
 
 
