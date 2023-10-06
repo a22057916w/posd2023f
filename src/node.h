@@ -9,7 +9,7 @@ class Node {
 public:
     virtual string name() const = 0;
     
-    // virtual string path() const = 0;
+    virtual string path() const = 0;
     
     // virtual void add(Node * node) = 0;
 
@@ -22,6 +22,8 @@ public:
     int numberOfFiles() const;
 
     // Iterator * createIterator();
+
+    virtual ~Node() {} ;
 };
 
 
