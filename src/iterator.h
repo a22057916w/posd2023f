@@ -3,7 +3,7 @@
 
 #pragma once 
 
-#include<list>
+#include <list>
 
 class Node;
 class Folder;
@@ -24,6 +24,8 @@ public:
     Node * currentItem() const;
     void next();
     bool isDone() const;
+private:
+    Folder * _composite;
 };
 
 

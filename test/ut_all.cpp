@@ -2,6 +2,7 @@
 
 #include "./ut_file.h"
 #include "./ut_folder.h"
+#include "./ut_iterator.h"
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);

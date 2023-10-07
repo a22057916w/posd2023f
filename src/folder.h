@@ -18,18 +18,15 @@ public:
 
 private:
     string _path;
+    list<Node *> _conposite;
 
-    // list<Node *> _conposite;
-
-    string getFilename() const;
+    
+    string getFilename() const {
+        size_t pos = _path.find_last_of("/\\");  // find the last separator either '/' or '\'
+            if(pos != string::npos) 
+                return _path.substr(pos + 1);
+            return _path;    // If no separator is found, return path as name
+    }
 };
-
-
-string Folder::getFilename() const {
-    size_t pos = _path.find_last_of("/\\");  // find the last separator either '/' or '\'
-        if(pos != string::npos) 
-            return _path.substr(pos + 1);
-        return _path;    // If no separator is found, return path as name
-}
 
 #endif // FOLDER
