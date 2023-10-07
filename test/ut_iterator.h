@@ -2,6 +2,6 @@
 
 #include "../src/iterator.h"
 
-TEST(IeraatprSuite, Ping) {
+TEST(IeratorSuite, Ping) {
     ASSERT_TRUE(true);
 }
