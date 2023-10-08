@@ -18,3 +18,9 @@ TEST(FileSuite, GetFilePath) {
     EXPECT_TRUE(file->path() == "test/hello.txt");
     delete file;
 }
+
+TEST(FileSuite, GetDirectoryPath) {
+    Node * file  = new File("test/dir/hello.txt");
+    EXPECT_EQ(file->directory(), "test/dir");
+    delete file;
+}
