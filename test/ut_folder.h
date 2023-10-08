@@ -18,3 +18,10 @@ TEST(FolderSuite, GetFolderPath) {
     EXPECT_TRUE(folder->path() == "test/dir1");
     delete folder;
 }
+
+// result should same as GetFolderPath 
+TEST(FolerSuite, GetFolderDirectory) {
+    Node * folder = new Folder("test/dir1");
+    EXPECT_EQ(folder->directory(), "test/dir1");
+    delete folder;
+}
