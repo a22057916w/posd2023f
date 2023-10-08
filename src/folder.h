@@ -2,6 +2,7 @@
 #define FOLDER
 
 #include "./node.h"
+#include "./iterator.h"
 
 #include <string>
 #include <list>
@@ -16,11 +17,12 @@ public:
 
     string path() const override { return _path; }
 
+    list<Node *> getComponents() const { return _components; }
+    
 private:
     string _path;
-    list<Node *> _conposite;
+    list<Node *> _components;
 
-    
     string getFilename() const {
         size_t pos = _path.find_last_of("/\\");  // find the last separator either '/' or '\'
             if(pos != string::npos) 
