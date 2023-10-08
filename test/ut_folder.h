@@ -57,3 +57,17 @@ TEST(FolderSuite, InvalidFolderAdd) {
     delete folder;
     delete child;
 }
+
+// TEST(FolderSuite, ValidFileAdd) {
+//     Node * folder = new Folder("test/dir1/dir2");
+//     Node * file = new File("test/dir1/dir2/dir3/hello.txt");
+
+//     testing::internal::CaptureStdout();
+//     folder->add(file);
+//     string output = testing::internal::GetCapturedStdout();
+
+//     EXPECT_EQ(1, folder->component().size());
+
+//     delete folder;
+//     delete file;
+// }

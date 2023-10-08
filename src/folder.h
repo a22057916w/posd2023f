@@ -17,18 +17,17 @@ public:
     string name() const override { return _name; }
     string path() const override { return _path; }
     string directory() const override { return _path; }  // extra def from Node
+    // list<Node *> components() const { return _components; }
 
     // Modifier
-    void add(Node * Node) override;
+    void add(Node * node) override;
 
-    list<Node *> getComponents() const { return _components; }
-    
 private:
     string _name;
     string _path;
     list<Node *> _components;
 
-    //setter
+    // Setter
     void set_name();
 };
 
