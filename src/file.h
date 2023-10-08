@@ -9,21 +9,22 @@ using std::string;
 
 class File: public Node {
 public:
-    File(string path): _path(path) {};
+    File(string path);  // setter inside
 
-    string name() const override { return getFilename(); }
-    
+    // Getter
+    string name() const override { return _name; }
     string path() const override { return _path; }
+    string directory() override { return _directory; }  // extra def from Node
+
 
 private:
+    string _name;
     string _path;
+    string _directory;
 
-    string getFilename() const {
-        size_t pos = _path.find_last_of("/\\");  // find the last separator either '/' or '\'
-        if(pos != string::npos) // Extract the filename
-            return _path.substr(pos + 1);
-        return _path;    // If no separator is found, return path as name
-    }
+    // setter
+    void set_name();
+    void set_directory();
 };
 
 #endif // FILE_H
