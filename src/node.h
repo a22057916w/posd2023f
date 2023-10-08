@@ -11,8 +11,9 @@ public:
     
     virtual string path() const = 0;
     
-    //
-    virtual string directory() { return ""; };
+    // extra definition
+    virtual string directory() const = 0;
+    
     // virtual void add(Node * node) = 0;
 
     // virtual void remove(string path) = 0;
