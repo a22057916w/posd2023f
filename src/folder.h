@@ -11,24 +11,22 @@ using namespace std;
 
 class Folder: public Node {
 public:
-    Folder(string path): _path(path) {};
+    Folder(string path);    // setter inside
 
-    string name() const override { return getFilename(); }
-
+    // Getter
+    string name() const override { return _name; }
     string path() const override { return _path; }
+    string directory() const override { return _path; }  // extra def from Node
 
     list<Node *> getComponents() const { return _components; }
     
 private:
+    string _name;
     string _path;
     list<Node *> _components;
 
-    string getFilename() const {
-        size_t pos = _path.find_last_of("/\\");  // find the last separator either '/' or '\'
-            if(pos != string::npos) 
-                return _path.substr(pos + 1);
-            return _path;    // If no separator is found, return path as name
-    }
+    //setter
+    void set_name();
 };
 
 #endif // FOLDER
