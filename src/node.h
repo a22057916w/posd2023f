@@ -11,6 +11,8 @@ public:
     
     virtual string path() const = 0;
     
+    //
+    virtual string directory() { return ""; };
     // virtual void add(Node * node) = 0;
 
     // virtual void remove(string path) = 0;
@@ -19,7 +21,7 @@ public:
 
     Node * find(string path);
 
-    int numberOfFiles() const;
+    // int numberOfFiles() const;
 
     // Iterator * createIterator();
 
