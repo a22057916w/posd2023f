@@ -32,7 +32,7 @@ TEST(FileSuite, InvalidAdd) {
 
     testing::internal::CaptureStdout();
     file->add(child);
-    std::string output = testing::internal::GetCapturedStdout();
+    string output = testing::internal::GetCapturedStdout();
 
     EXPECT_EQ(output, "You can only add a node under a directory.\n");
     
