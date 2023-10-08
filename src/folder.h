@@ -18,6 +18,9 @@ public:
     string path() const override { return _path; }
     string directory() const override { return _path; }  // extra def from Node
 
+    // Modifier
+    void add(Node * Node) override;
+
     list<Node *> getComponents() const { return _components; }
     
 private:
