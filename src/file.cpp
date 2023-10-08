@@ -1,6 +1,8 @@
 #include "./file.h"
+#include "./node.h"
 
 #include <string>
+#include <iostream>
 
 using std::string;
 
@@ -8,6 +10,11 @@ File::File(string path): _path(path) {
     set_name();
     set_directory();
 }
+
+void File::add(Node * node) {
+    std::cout << "You can only add a node under a directory.\n";
+}
+
 
 void File::set_name() {
     // find the last separator either '/' or '\'
