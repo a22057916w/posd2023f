@@ -4,9 +4,7 @@
 #pragma once 
 
 #include <list>
-#include <string>
 
-using std::string;
 
 class Node;
 class Folder;
@@ -19,7 +17,6 @@ public:
     void next();
     bool isDone() const;
 
-    // virtual string type() const { return NULL; }
 };
 
 class FolderIterator : public Iterator {
@@ -30,10 +27,8 @@ public:
     void next();
     bool isDone() const;
 
-    // string type() const override { return "FolderIterator"; }
 private:
     Folder * _composite;
-    // string const _type = "FolderIterator";
     std::list<Node *>::iterator _it;
 };
 
