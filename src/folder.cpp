@@ -1,5 +1,7 @@
 #include "./folder.h"
 #include "./node.h"
+#include "./iterator.h"
+#include "./dfs_iterator.h"
 
 #include <iostream>
 #include <string>
@@ -23,6 +25,15 @@ void Folder::add(Node * node) {
         cout << "The node's path do not match with the current directory.\n";
 }
 
+
+Iterator * Folder::createIterator(string type) {
+    if (type == "Dfs")
+        return new DfsIterator(this);
+    else if (type == "Bfs")
+        return new BfsIterator(this);
+    else
+        return new FolderIterator(this);
+}
 
 void Folder::set_name() {
     // find the last separator either '/' or '\'

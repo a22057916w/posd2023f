@@ -16,11 +16,14 @@ public:
     // Getter
     string name() const override { return _name; }
     string path() const override { return _path; }
-    string directory() const override { return _path; }  // extra def from Node
-    // list<Node *> components() const { return _components; }
+    string directory() const override { return _path; } // extra def from Node
+    list<Node *> components() const { return _components; } // extra def from Node
 
     // Modifier
     void add(Node * node) override;
+
+    // Iterator
+    Iterator * createIterator(string type); 
 
 private:
     string _name;

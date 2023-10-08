@@ -3,7 +3,7 @@
 
 class DfsIterator: public Iterator {
 public:
-    DfsIterator(Node* composite);
+    DfsIterator(Node* composite) {};
 
     void first();
 
@@ -16,7 +16,7 @@ public:
 
 class BfsIterator: public Iterator {
 public:
-    BfsIterator(Node* composite);
+    BfsIterator(Node* composite) {};
     void first();
     Node * currentItem() const;
     void next();
