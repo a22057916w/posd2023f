@@ -14,7 +14,7 @@ public:
     // Getter
     string name() const override { return _name; }
     string path() const override { return _path; }
-    string directory() override { return _directory; }  // extra def from Node
+    string directory() const override { return _directory; }  // extra def from Node
 
 
 private:
