@@ -7,7 +7,7 @@ class Node;
 
 class DfsIterator: public Iterator {
 public:
-    DfsIterator(Node* composite) {};
+    DfsIterator(Node* composite);
 
     void first();
 
