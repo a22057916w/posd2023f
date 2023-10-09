@@ -4,14 +4,22 @@
 
 #include <list>
 
+using std::list;
+
 FolderIterator::FolderIterator(Folder * composite): _composite(composite) {}
 
 void FolderIterator::first() {
-    list<Node *> _components = _composite->components();
-    _it = _components.begin();
+    _it = _composite->components().begin();
+}
+
+void FolderIterator::next() {
+    _it++;
+}
+
+Node * FolderIterator::currentItem() const {
+    return *_it;
 }
 
 bool FolderIterator::isDone() const {
-    list<Node *> _components = _composite->components();
-    return _it == _components.end();
+    return _it == _composite->components().end();
 }
