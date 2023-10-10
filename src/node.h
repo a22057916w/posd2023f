@@ -18,13 +18,13 @@ public:
 
     virtual void add(Node * node) = 0;
 
-    // virtual void remove(string path) = 0;
+    // virtual void remove(string path) {};
     
     Node * getChildByName(const char * name) const;
 
     Node * find(string path);
 
-    // int numberOfFiles() const;
+    virtual int numberOfFiles() const {return 0;};
 
     virtual Iterator * createIterator(string type) { return NULL; };
 

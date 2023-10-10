@@ -138,4 +138,27 @@ TEST(FolderSuite, BfsIterator) {
     _it->next();
     EXPECT_TRUE(_it->isDone());
 
+    delete root;
+    delete home;
+    delete fileA;
+    delete fileB;
+    delete fileC;
+    delete _it;
+
+}
+
+TEST(FolderSuite, NumberOfFiles) {
+    Folder * root = new Folder("root");
+    Folder * home = new Folder("root/home");
+
+    File * fileA = new File("root/fileA.txt");
+    File * fileB = new File("root/fileB.txt");
+    File * fileC = new File("root/home/fileC.txt");
+
+    home->add(fileC);
+    root->add(fileA);
+    root->add(fileB);
+    root->add(home);
+
+    EXPECT_EQ(3, root->numberOfFiles());
 }

@@ -25,6 +25,7 @@ void Folder::add(Node * node) {
 }
 
 
+
 Iterator * Folder::createIterator(string type) {
     if (type == "Dfs")
         return new DfsIterator(this);
@@ -32,6 +33,24 @@ Iterator * Folder::createIterator(string type) {
         return new BfsIterator(this);
     else
         return new FolderIterator(this);
+}
+
+
+int Folder::numberOfFiles() const {
+    int count = 0;
+
+    // Make a copy of the current folder
+    Folder * copy = new Folder(_path);
+    for(Node * component : _components)
+        copy->add(component);
+
+    // Count the files by BFS
+    BfsIterator * it = new BfsIterator(copy);
+    for(it->first(); !it->isDone(); it->next())
+        // If current node is folder, ignore it.
+        if(it->currentItem() != dynamic_cast<Folder *>(it->currentItem()))
+            count++;
+    return count;
 }
 
 void Folder::set_name() {
