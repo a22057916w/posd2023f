@@ -91,7 +91,8 @@ TEST(FolderSuite, FolderIterator) {
     root->add(home);
     root->add(file);
 
-    FolderIterator *_it = dynamic_cast<FolderIterator *>(root->createIterator("Folder"));
+    root->setIteratorType("Folder");
+    FolderIterator *_it = dynamic_cast<FolderIterator *>(root->createIterator());
 
     _it->first();
     EXPECT_EQ(_it->currentItem()->path(), "root/home");
@@ -121,7 +122,8 @@ TEST(FolderSuite, BfsIterator) {
     root->add(home);
     root->add(fileB);
     
-    BfsIterator * _it = dynamic_cast<BfsIterator *>(root->createIterator("Bfs"));
+    root->setIteratorType("Bfs");
+    BfsIterator * _it = dynamic_cast<BfsIterator *>(root->createIterator());
 
     _it->first();
     EXPECT_EQ(_it->currentItem()->path(), "root/fileA.txt");
@@ -203,7 +205,7 @@ TEST(Folder, getChildByName) {
 
     Node * node = root->getChildByName("fileA.txt");
     EXPECT_EQ(node->path(), "root/home/fileA.txt");
-    
+
     delete root;
     delete home;
     delete fileA;
