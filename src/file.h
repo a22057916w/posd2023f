@@ -16,9 +16,12 @@ public:
     string path() const override { return _path; }
     string directory() const override { return _directory; }  // extra def from Node
 
-    // modifier
+    // Modifier
     void add(Node * node) override;
 
+    // Capacity
+    int numberOfFiles() const override { return 0; };
+    
 private:
     string _name;
     string _path;

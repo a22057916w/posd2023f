@@ -24,7 +24,7 @@ public:
 
     Node * find(string path);
 
-    virtual int numberOfFiles() const {return 0;};
+    virtual int numberOfFiles() const = 0;
 
     virtual Iterator * createIterator(string type) { return NULL; };
 
