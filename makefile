@@ -1,3 +1,8 @@
+clean:
+	rm -rf bin obj
+
+dirs:
+	mkdir -p bin obj
 
 all: bin/ut_all
 
@@ -16,3 +21,5 @@ dfs_iterator.o: src/dfs_iterator.h src/dfs_iterator.cpp
 bin/ut_all: test/ut_all.cpp test/ut_file.h test/ut_folder.h test/ut_iterator.h iterator.o dfs_iterator.o file.o folder.o
 	g++ -std=c++11 test/ut_all.cpp obj/iterator.o obj/dfs_iterator.o obj/file.o obj/folder.o -o bin/ut_all -lgtest -lpthread 
 
+
+	
