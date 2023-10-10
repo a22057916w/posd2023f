@@ -3,6 +3,7 @@
 #include "../src/node.h"
 #include "../src/folder.h"
 #include "../src/iterator.h"
+#include "../src/dfs_iterator.h"
 
 #include <string>
 
@@ -104,4 +105,37 @@ TEST(FolderSuite, FolderIterator) {
     delete file;
     delete home;
     delete root;
+    delete _it;
+}
+
+TEST(FolderSuite, BfsIterator) {
+    Folder * root = new Folder("root");
+    Folder * home = new Folder("root/home");
+
+    File * fileA = new File("root/fileA.txt");
+    File * fileB = new File("root/fileB.txt");
+    File * fileC = new File("root/home/fileC.txt");
+
+    home->add(fileC);
+    root->add(fileA);
+    root->add(home);
+    root->add(fileB);
+    
+    BfsIterator * _it = dynamic_cast<BfsIterator *>(root->createIterator("Bfs"));
+
+    _it->first();
+    EXPECT_EQ(_it->currentItem()->path(), "root/fileA.txt");
+
+    _it->next();
+    EXPECT_EQ(_it->currentItem()->path(), "root/home");
+
+    _it->next();
+    EXPECT_EQ(_it->currentItem()->path(), "root/fileB.txt");
+
+    _it->next();
+    EXPECT_EQ(_it->currentItem()->path(), "root/home/fileC.txt");
+
+    _it->next();
+    EXPECT_TRUE(_it->isDone());
+
 }

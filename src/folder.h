@@ -11,6 +11,8 @@ using namespace std;
 
 class Folder: public Node {
     friend class FolderIterator;
+    friend class DfsIterator;
+    friend class BfsIterator;
 public:
     Folder(string path);    // setter inside
 
