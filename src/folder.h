@@ -24,7 +24,8 @@ public:
     void add(Node * node) override;
 
     // Iterator
-    Iterator * createIterator(); 
+    Iterator * createIterator(string type);
+
 
 private:
     string _name;

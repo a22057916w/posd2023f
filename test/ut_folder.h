@@ -90,7 +90,7 @@ TEST(FolderSuite, FolderIterator) {
     root->add(home);
     root->add(file);
 
-    FolderIterator *_it = dynamic_cast<FolderIterator *>(root->createIterator());
+    FolderIterator *_it = dynamic_cast<FolderIterator *>(root->createIterator("Folder"));
 
     _it->first();
     EXPECT_EQ(_it->currentItem()->path(), "root/home");
