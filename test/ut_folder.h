@@ -192,6 +192,23 @@ TEST(FolderSuite, Find) {
     delete fileB; // also delete node
 }
 
+TEST(Folder, getChildByName) {
+    Folder * root = new Folder("root");
+    Folder * home = new Folder("root/home");
+
+    File * fileA = new File("root/home/fileA.txt");
+
+    home->add(fileA);
+    root->add(home);
+
+    Node * node = root->getChildByName("fileA.txt");
+    EXPECT_EQ(node->path(), "root/home/fileA.txt");
+    
+    delete root;
+    delete home;
+    delete fileA;
+}
+
 TEST(FolderSuite, RemoveFiles) {
     Folder * root = new Folder("root");
     Folder * home = new Folder("root/home");

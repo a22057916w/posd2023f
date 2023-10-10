@@ -28,14 +28,6 @@ void Folder::add(Node * node) {
 
 
 void Folder::remove(string path) {
-    // BfsIterator *_it = dynamic_cast<BfsIterator *>(createIterator("bfs"));
-    // for(_it->first(); !_it->isDone(); _it->next()) {
-    //     if(_it->currentItem()->path() == path) {
-    //         Folder * parent = dynamic_cast<Folder *>(_it->currentItem()->_parent);
-    //         parent->_components.remove(_it->currentItem());
-    //         break;
-    //     }
-    // }
     Node * node = find(path);
     if(node) {
         Folder * parent = dynamic_cast<Folder *>(node->_parent);
@@ -52,6 +44,22 @@ Node * Folder::find(string path) {
             return _it->currentItem();
 
     return nullptr;   
+}
+
+Node * Folder::getChildByName(const char * name) const {
+    // Make a copy of the current folder
+    Folder * copy = new Folder(_path);
+    for(Node * component : _components)
+        copy->add(component);
+
+    // Count the files by BFS
+    BfsIterator * _it = new BfsIterator(copy);
+    for(_it->first(); !_it->isDone(); _it->next())
+        if(_it->currentItem()->name() == name) {
+            return _it->currentItem();
+        }
+            
+    return nullptr;
 }
 
 Iterator * Folder::createIterator(string type) {

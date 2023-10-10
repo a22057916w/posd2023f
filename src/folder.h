@@ -34,6 +34,7 @@ public:
 
     // Search
     Node * find(string path) override;
+    Node * getChildByName(const char * name) const override;
 
 private:
     string _name;
