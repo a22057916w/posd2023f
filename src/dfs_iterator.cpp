@@ -65,7 +65,7 @@ void BfsIterator::first() {
     Folder * folder = dynamic_cast<Folder *>(currentNode);
     if(folder) {
         FolderIterator * fit = new FolderIterator(folder);
-            for(fit->first(); !fit->isDone(); fit++)
+            for(fit->first(); !fit->isDone(); fit->next())
                 _container.push_back(fit->currentItem());
     }
 }
