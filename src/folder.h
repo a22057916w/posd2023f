@@ -10,6 +10,7 @@
 using namespace std;
 
 class Folder: public Node {
+    friend class FolderIterator;
 public:
     Folder(string path);    // setter inside
 
@@ -23,12 +24,13 @@ public:
     void add(Node * node) override;
 
     // Iterator
-    Iterator * createIterator(string type); 
+    Iterator * createIterator(); 
 
 private:
     string _name;
     string _path;
     string _directory;
+    string _type = "Folder";
     list<Node *> _components;
 
     // Setter

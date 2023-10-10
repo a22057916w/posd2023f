@@ -25,10 +25,10 @@ void Folder::add(Node * node) {
 }
 
 
-Iterator * Folder::createIterator(string type) {
-    if (type == "Dfs")
+Iterator * Folder::createIterator() {
+    if (_type == "Dfs")
         return new DfsIterator(this);
-    else if (type == "Bfs")
+    else if (_type == "Bfs")
         return new BfsIterator(this);
     else
         return new FolderIterator(this);
