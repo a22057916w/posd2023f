@@ -10,13 +10,10 @@ void DfsIterator::first() {
     Folder * folder = dynamic_cast<Folder *>(_composite);
     if(folder)
         _it = folder->components().begin();
-    // If it's a file, _it = nullptr
-    else 
-        _it = nullptr;  // need to be changed
 }
 
 Node * DfsIterator::currentItem() const {
-
+    return nullptr;
 }
 
 void DfsIterator::next() {
