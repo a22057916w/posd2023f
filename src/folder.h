@@ -24,13 +24,16 @@ public:
 
     // Modifier
     void add(Node * node) override;
-    // void remove(string path) override;
+    void remove(string path) override;
 
     // Iterator
     Iterator * createIterator(string type);
 
     // Capacity
     int numberOfFiles() const override;
+
+    // Search
+    Node * find(string path) override;
 
 private:
     string _name;

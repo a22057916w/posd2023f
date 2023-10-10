@@ -18,13 +18,41 @@ Folder::Folder(string path): _path(path) {
 
 
 void Folder::add(Node * node) {
-    if(node->directory() == _path) 
+    if(node->directory() == _path)  {
         _components.push_back(node);
+        node->_parent = this;
+    }
     else
         cout << "The node's path do not match with the current directory.\n";
 }
 
 
+void Folder::remove(string path) {
+    // BfsIterator *_it = dynamic_cast<BfsIterator *>(createIterator("bfs"));
+    // for(_it->first(); !_it->isDone(); _it->next()) {
+    //     if(_it->currentItem()->path() == path) {
+    //         Folder * parent = dynamic_cast<Folder *>(_it->currentItem()->_parent);
+    //         parent->_components.remove(_it->currentItem());
+    //         break;
+    //     }
+    // }
+    Node * node = find(path);
+    if(node) {
+        Folder * parent = dynamic_cast<Folder *>(node->_parent);
+        parent->_components.remove(node);
+        delete node;
+    }
+}
+
+Node * Folder::find(string path) {
+    BfsIterator * _it = new BfsIterator(this);
+    // BfsIterator *_it = dynamic_cast<BfsIterator *>(createIterator("bfs"));
+    for(_it->first(); !_it->isDone(); _it->next()) 
+        if(_it->currentItem()->path() == path) 
+            return _it->currentItem();
+
+    return nullptr;   
+}
 
 Iterator * Folder::createIterator(string type) {
     if (type == "Dfs")

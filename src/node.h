@@ -9,6 +9,8 @@ using namespace std;
 
 class Node {
 public:
+    Node * _parent;
+    
     virtual string name() const = 0;
     
     virtual string path() const = 0;
@@ -16,19 +18,21 @@ public:
     // extra definition
     virtual string directory() const = 0;
 
+
     virtual void add(Node * node) = 0;
 
-    // virtual void remove(string path) {};
+    virtual void remove(string path) {};
     
     Node * getChildByName(const char * name) const;
 
-    Node * find(string path);
+    virtual Node * find(string path) { return nullptr;};
 
     virtual int numberOfFiles() const = 0;
 
     virtual Iterator * createIterator(string type) { return NULL; };
 
     virtual ~Node() {};
+
 };
 
 

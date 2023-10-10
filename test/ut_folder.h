@@ -161,4 +161,56 @@ TEST(FolderSuite, NumberOfFiles) {
     root->add(home);
 
     EXPECT_EQ(3, root->numberOfFiles());
+
+    delete root;
+    delete home;
+    delete fileA;
+    delete fileB;
+    delete fileC;
+}
+
+TEST(FolderSuite, Find) {
+    Folder * root = new Folder("root");
+    Folder * home = new Folder("root/home");
+
+    File * fileA = new File("root/fileA.txt");    
+    File * fileB = new File("root/home/fileB.txt");
+
+    home->add(fileB);
+    root->add(fileA);
+    root->add(home);
+
+    Node * node = root->find("root/fileA.txt");
+    EXPECT_EQ(node->path(), "root/fileA.txt");
+
+    node = root->find("root/home/fileB.txt");
+    EXPECT_EQ(node->path(), "root/home/fileB.txt");
+
+    delete root;
+    delete home;
+    delete fileA;
+    delete fileB; // also delete node
+}
+
+TEST(FolderSuite, RemoveFiles) {
+    Folder * root = new Folder("root");
+    Folder * home = new Folder("root/home");
+
+    File * fileA = new File("root/fileA.txt");
+    File * fileB = new File("root/fileB.txt");
+    File * fileC = new File("root/home/fileC.txt");
+
+    home->add(fileC);
+    root->add(fileA);
+    root->add(fileB);
+    root->add(home);
+
+    root->remove("root/home/fileC.txt");
+    EXPECT_EQ(2, root->numberOfFiles());
+
+    // fileC has alredy been remove(delete)
+    delete root;
+    delete home;
+    delete fileA;
+    delete fileB;
 }
