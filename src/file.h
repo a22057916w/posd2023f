@@ -2,6 +2,8 @@
 #define FILE_H
 
 #include "./node.h"
+#include "./iterator.h"
+#include "./null_iterator.h"
 
 #include <string>
 
@@ -18,6 +20,9 @@ public:
 
     // Modifier
     void add(Node * node) override;
+
+    // Iterator
+    Iterator * createIterator() override;
 
     // Capacity
     int numberOfFiles() const override { return 0; };

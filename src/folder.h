@@ -30,7 +30,7 @@ public:
     void remove(string path) override;
 
     // Iterator
-    Iterator * createIterator();
+    Iterator * createIterator() override;
 
     // Capacity
     int numberOfFiles() const override;

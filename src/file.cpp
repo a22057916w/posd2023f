@@ -1,5 +1,7 @@
 #include "./file.h"
 #include "./node.h"
+#include "./iterator.h"
+#include "./null_iterator.h"
 
 #include <string>
 #include <iostream>
@@ -15,6 +17,9 @@ void File::add(Node * node) {
     std::cout << "You can only add a node under a directory.\n";
 }
 
+Iterator * File::createIterator() {
+    return new NullIterator();
+}
 
 void File::set_name() {
     // find the last separator either '/' or '\'

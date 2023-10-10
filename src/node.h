@@ -29,7 +29,7 @@ public:
 
     virtual int numberOfFiles() const = 0;
 
-    virtual Iterator * createIterator(string type) { return NULL; };
+    virtual Iterator * createIterator() = 0;
 
     virtual ~Node() {};
 
