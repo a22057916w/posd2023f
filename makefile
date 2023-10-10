@@ -1,4 +1,4 @@
-.PHONY: directories clean
+.PHONY: directories clean stat
 
 all: clean dirs bin/ut_all
 
@@ -22,3 +22,6 @@ clean:
 
 dirs:
 	mkdir -p bin obj
+
+stat:
+	wc src/* test/*
