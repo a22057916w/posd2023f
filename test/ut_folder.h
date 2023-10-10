@@ -24,9 +24,9 @@ TEST(FolderSuite, GetFolderPath) {
 }
 
 // result should same as GetFolderPath 
-TEST(FolerSuite, GetFolderDirectory) {
+TEST(FolerSuite, GetDirectoryPaht) {
     Node * folder = new Folder("test/dir1");
-    EXPECT_EQ(folder->directory(), "test/dir1");
+    EXPECT_EQ(folder->directory(), "test");
     delete folder;
 }
 

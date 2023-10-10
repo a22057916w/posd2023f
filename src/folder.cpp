@@ -13,13 +13,12 @@ using std::cout;
 
 Folder::Folder(string path): _path(path) {
     set_name();
+    set_directory();
 }
 
 
 void Folder::add(Node * node) {
-    string node_direcotry = node->directory();
-    // if folder path is in the node's(file or folder) path
-    if(node_direcotry.find(_path) != string::npos) 
+    if(node->directory() == _path) 
         _components.push_back(node);
     else
         cout << "The node's path do not match with the current directory.\n";
@@ -44,4 +43,13 @@ void Folder::set_name() {
         _name = _path.substr(pos + 1);
     else
         _name = "";
+}
+
+void Folder::set_directory() {
+    size_t pos = _path.find_last_of("/\\");
+    
+    if (pos != string::npos) 
+        _directory = _path.substr(0, pos);
+    else
+        _directory = "";  
 }
