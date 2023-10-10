@@ -62,14 +62,22 @@ TEST(FolderSuite, ValidFileAdd) {
     Folder * folder = new Folder("test/dir1/dir2");
     Node * file = new File("test/dir1/dir2/hello.txt");
 
-    testing::internal::CaptureStdout();
     folder->add(file);
-    string output = testing::internal::GetCapturedStdout();
-
     EXPECT_EQ(1, folder->components().size());
 
     delete folder;
     delete file;
+}
+
+TEST(FolderSuite, ValidFolderAdd) {
+    Folder * root = new Folder("root");
+    Folder * home = new Folder("root/home");
+
+    root->add(home);
+    EXPECT_EQ(1, root->components().size());
+
+    delete root;
+    delete home;
 }
 
 
