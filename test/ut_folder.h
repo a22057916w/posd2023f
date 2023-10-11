@@ -165,20 +165,20 @@ TEST(FolderSuite, DfsIterator) {
     root->setIteratorType("Dfs");
     DfsIterator * _it = dynamic_cast<DfsIterator *>(root->createIterator());
 
-    // _it->first();
-    // EXPECT_EQ(_it->currentItem()->path(), "root/fileA.txt");
+    _it->first();
+    EXPECT_EQ(_it->currentItem()->path(), "root/fileA.txt");
 
-    // _it->next();
-    // EXPECT_EQ(_it->currentItem()->path(), "root/home");
+    _it->next();
+    EXPECT_EQ(_it->currentItem()->path(), "root/home/fileB.txt");
 
-    // _it->next();
-    // EXPECT_EQ(_it->currentItem()->path(), "root/home/fileB.txt");
+    _it->next();
+    EXPECT_EQ(_it->currentItem()->path(), "root/home");
 
-    // _it->next();
-    // EXPECT_EQ(_it->currentItem()->path(), "root/fileA.txt");
+    _it->next();
+    EXPECT_EQ(_it->currentItem()->path(), "root/fileC.txt");
 
-    // _it->next();
-    // EXPECT_TRUE(_it->isDone());
+    _it->next();
+    EXPECT_TRUE(_it->isDone());
 
     delete root;
     delete home;

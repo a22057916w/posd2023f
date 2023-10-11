@@ -12,10 +12,10 @@ DfsIterator::DfsIterator(Node * composite): _composite(composite) {
 }
 
 void DfsIterator::first() {
-    Node * currentNode = currentItem();
-    Folder * folder = dynamic_cast<Folder *>(currentNode);
-    if(folder)
-        pushFolder(folder);
+    // Node * currentNode = currentItem();
+    // Folder * folder = dynamic_cast<Folder *>(currentNode);
+    // if(folder)
+    //     pushFolder(folder);
 
     _it = _container.begin();
 }
@@ -25,7 +25,6 @@ Node * DfsIterator::currentItem() const {
 }
 
 void DfsIterator::next() {
-    
     if(!isDone()) {
         _container.pop_front();
         
