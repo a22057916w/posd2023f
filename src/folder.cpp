@@ -16,9 +16,6 @@ Folder::Folder(string path): _path(path) {
     set_directory();
 }
 
-void Folder::setIteratorType(string iter_type) {
-    _iter_type = iter_type;
-}
 
 void Folder::add(Node * node) {
     if(node->directory() == _path)  {
@@ -66,12 +63,7 @@ Node * Folder::getChildByName(const char * name) const {
 }
 
 Iterator * Folder::createIterator() {
-    if (_iter_type == "Dfs")
-        return new DfsIterator(this);
-    else if (_iter_type == "Bfs")
-        return new BfsIterator(this);
-    else
-        return new FolderIterator(this);
+    return new FolderIterator(this);
 }
 
 

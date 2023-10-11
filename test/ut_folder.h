@@ -91,8 +91,7 @@ TEST(FolderSuite, FolderIterator) {
     root->add(home);
     root->add(file);
 
-    root->setIteratorType("Folder");
-    FolderIterator *_it = dynamic_cast<FolderIterator *>(root->createIterator());
+    Iterator *_it = root->createIterator();
 
     _it->first();
     EXPECT_EQ(_it->currentItem()->path(), "root/home");
@@ -122,8 +121,7 @@ TEST(FolderSuite, BfsIterator) {
     root->add(home);
     root->add(fileB);
     
-    root->setIteratorType("Bfs");
-    BfsIterator * _it = dynamic_cast<BfsIterator *>(root->createIterator());
+    BfsIterator * _it = new BfsIterator(root);
 
     _it->first();
     EXPECT_EQ(_it->currentItem()->path(), "root/fileA.txt");
@@ -162,8 +160,7 @@ TEST(FolderSuite, DfsIterator) {
     root->add(home);
     root->add(fileA);
     
-    root->setIteratorType("Dfs");
-    DfsIterator * _it = dynamic_cast<DfsIterator *>(root->createIterator());
+    DfsIterator * _it = new DfsIterator(root);
 
     _it->first();
     EXPECT_EQ(_it->currentItem()->path(), "root/fileA.txt");
