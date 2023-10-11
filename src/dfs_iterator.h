@@ -6,22 +6,25 @@
 #include <list>
 
 class Node;
+class Folder;
 
 class DfsIterator: public Iterator {
 public:
-    DfsIterator(Node* composite) {};
+    DfsIterator(Node* composite);
 
-    void first() {};
+    void first();
 
-    Node * currentItem() const { return nullptr;};
+    Node * currentItem() const;
 
-    void next() {};
+    void next();
     
-    bool isDone() const { return true;};
+    bool isDone() const;
 private:
     Node * _composite;
-    // std::stack<Node *> _stack;
+    std::list<Node *> _container;
     std::list<Node *>::iterator _it;
+
+    void pushFolder(Folder * floder);
 };
 
 class BfsIterator: public Iterator {

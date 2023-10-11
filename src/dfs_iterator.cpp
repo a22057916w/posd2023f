@@ -5,44 +5,56 @@
 #include <list>
 
 
+DfsIterator::DfsIterator(Node * composite): _composite(composite) {
+    Folder * folder = dynamic_cast<Folder *>(_composite);
+    if(folder) 
+        pushFolder(folder);
+}
 
-// DfsIterator::DfsIterator(Node * composite): _composite(composite) {}
+void DfsIterator::first() {
+    Node * currentNode = currentItem();
+    Folder * folder = dynamic_cast<Folder *>(currentNode);
+    if(folder)
+        pushFolder(folder);
 
-// void DfsIterator::first() {
-//     // if(isDone()) {
-//     //     return;
-//     // }
+    _it = _container.begin();
+}
 
-//     // Folder * folder = dynamic_cast<Folder *>(_composite);
-//     // if(folder) {
-//     //     for(auto it = folder->_components.begin(); it != folder->_components.end(); it++)
-//     //         this->first();
-//     // }
+Node * DfsIterator::currentItem() const {
+    return *_it;
+}
+
+void DfsIterator::next() {
     
-// }
+    if(!isDone()) {
+        _container.pop_front();
+        
+        Node * currentNode = currentItem();
+        Folder * folder = dynamic_cast<Folder *>(currentNode);
+        if(folder)
+            pushFolder(folder);   
 
-// Node * DfsIterator::currentItem() const {
-//     return *_it;
-// }
+        _it = _container.begin();
+    }
 
-// void DfsIterator::next() {
-//     // _it++;
+}
 
-//     // Node * currentNode = this->currentItem();
-//     // Folder * folder = dynamic_cast<Folder *>(currentNode);
-//     // if(folder) {
-//     //     DfsIterator * d_it = dynamic_cast<DfsIterator *>(folder->createIterator("Dfs"));
-//     //     d_it->first();
-//     //     d_it->run();
-//     // }
+bool DfsIterator::isDone() const {
+    return _it == _container.end();
+}
 
-// }
 
-// bool DfsIterator::isDone() const {
-//     // Folder * folder = dynamic_cast<Folder *>(_composite);
-//     return _it == folder->_components.end();;
-// }
+void DfsIterator::pushFolder(Folder * folder) {
+    FolderIterator * fit = new FolderIterator(folder);
+    for(fit->first(); !fit->isDone(); fit->next()) {
+        _container.push_front(fit->currentItem());
 
+        if(fit->currentItem() == dynamic_cast<Folder *>(fit->currentItem()))
+            pushFolder(dynamic_cast<Folder *>(fit->currentItem()));         
+    }
+}
+
+// ******************* BfsIterator **********************
 
 
 BfsIterator::BfsIterator(Node * composite): _composite(composite) {
@@ -57,9 +69,6 @@ BfsIterator::BfsIterator(Node * composite): _composite(composite) {
 
 void BfsIterator::first() {
     _it = _container.begin();
-    // Folder * folder = dynamic_cast<Folder *>(_composite);
-    // if(folder) 
-    //     _it = folder->_components.begin();
 
     Node * currentNode = currentItem();
     Folder * folder = dynamic_cast<Folder *>(currentNode);

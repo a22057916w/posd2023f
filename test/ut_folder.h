@@ -149,6 +149,46 @@ TEST(FolderSuite, BfsIterator) {
 
 }
 
+TEST(FolderSuite, DfsIterator) {
+    Folder * root = new Folder("root");
+    Folder * home = new Folder("root/home");
+
+    File * fileA = new File("root/fileA.txt");
+    File * fileB = new File("root/home/fileB.txt");
+    File * fileC = new File("root/fileC.txt");
+
+    home->add(fileB);
+    root->add(fileC);
+    root->add(home);
+    root->add(fileA);
+    
+    root->setIteratorType("Dfs");
+    DfsIterator * _it = dynamic_cast<DfsIterator *>(root->createIterator());
+
+    // _it->first();
+    // EXPECT_EQ(_it->currentItem()->path(), "root/fileA.txt");
+
+    // _it->next();
+    // EXPECT_EQ(_it->currentItem()->path(), "root/home");
+
+    // _it->next();
+    // EXPECT_EQ(_it->currentItem()->path(), "root/home/fileB.txt");
+
+    // _it->next();
+    // EXPECT_EQ(_it->currentItem()->path(), "root/fileA.txt");
+
+    // _it->next();
+    // EXPECT_TRUE(_it->isDone());
+
+    delete root;
+    delete home;
+    delete fileA;
+    delete fileB;
+    delete fileC;
+    delete _it;
+
+}
+
 TEST(FolderSuite, NumberOfFiles) {
     Folder * root = new Folder("root");
     Folder * home = new Folder("root/home");
