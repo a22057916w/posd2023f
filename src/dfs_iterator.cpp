@@ -30,8 +30,9 @@ void DfsIterator::next() {
         
         Node * currentNode = currentItem();
         Folder * folder = dynamic_cast<Folder *>(currentNode);
-        if(folder)
+        if(folder && !folder->isVisited()) {
             pushFolder(folder);   
+        }
 
         _it = _container.begin();
     }
@@ -44,6 +45,8 @@ bool DfsIterator::isDone() const {
 
 
 void DfsIterator::pushFolder(Folder * folder) {
+    folder->setVisited();
+
     FolderIterator * fit = new FolderIterator(folder);
     for(fit->first(); !fit->isDone(); fit->next()) {
         _container.push_front(fit->currentItem());

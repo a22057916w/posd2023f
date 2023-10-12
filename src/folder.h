@@ -19,9 +19,14 @@ public:
     // Getter
     string name() const override { return _name; }
     string path() const override { return _path; }
-    string directory() const override { return _directory; } // extra def from Node
-    list<Node *> components() const { return _components; } // extra def from Node
+    string directory() const override { return _directory; } // extra def
+    list<Node *> components() const { return _components; } // extra def
+    bool isVisited() const { return _visited; } // extra def
 
+
+    // Setter
+    void setVisited() { _visited = true; }
+    
     // Modifier
     void add(Node * node) override;
     void remove(string path) override;
@@ -41,6 +46,7 @@ private:
     string _path;
     string _directory;
     list<Node *> _components;
+    bool _visited = false;
 
     // Setter
     void set_name();
