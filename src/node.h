@@ -1,8 +1,10 @@
 #pragma once 
 
-#include<string>
 #include "iterator.h"
 #include "null_iterator.h"
+#include "visitor.h"
+
+#include <string>
 
 using namespace std;
 

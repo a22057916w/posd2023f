@@ -1,6 +1,7 @@
 #pragma once
 
 #include "node.h"
+#include "visitor.h"
 
 class File: public Node {
 public:
@@ -23,5 +24,9 @@ public:
             pathList.push_back(this->path());
         }
         return pathList;
+    }
+
+    void accept(Visitor * visitor) {
+        visitor->visitFile(this);
     }
 };

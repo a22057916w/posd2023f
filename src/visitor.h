@@ -5,6 +5,7 @@ class Folder;
 
 class Visitor {
 public:
-    void visitFile(File * file);
+    ~Visitor();
+    virtual void visitFile(File * file) = 0;
     void visitFolder(Folder * folder);
 };
