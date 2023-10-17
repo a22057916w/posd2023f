@@ -8,7 +8,6 @@
 using namespace std;
 
 class Folder: public Node {
-    friend class FolderIterator;
 private:
     list<Node *> _nodes;
 
@@ -19,7 +18,7 @@ protected:
 
 public:
     Folder(string path): Node(path) {}
-    
+
     class FolderIterator : public Iterator {
     public:
         FolderIterator(Folder* composite);
