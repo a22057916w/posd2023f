@@ -1,27 +1,23 @@
-.PHONY: directories clean stat
+.PHONY: clean dirs
 
-all: clean dirs bin/ut_all
+UT_ALL = test/ut_all.cpp
+TEST_HEADERS = test/ut_iterator.h test/ut_file.h test/ut_folder.h test/ut_node.h 
 
-file.o: src/file.h src/file.cpp
-	g++ -std=c++11 -c src/file.cpp -o obj/file.o
+SRC_HEADERS = src/file.h src/folder.h src/node.h src/iterator.h src/null_iterator.h src/dfs_iterator.h
 
-folder.o: src/folder.h src/folder.cpp
-	g++ -std=c++11 -c src/folder.cpp -o obj/folder.o
+ITERATOR_OBJ = obj/iterator.o
+ITERATOR_SRC = src/iterator.cpp src/iterator.h
 
-iterator.o: src/iterator.h src/iterator.cpp 
-	g++ -std=c++11 -c src/iterator.cpp -o obj/iterator.o
+all: dirs bin/ut_all
 
-dfs_iterator.o: src/dfs_iterator.h src/dfs_iterator.cpp
-	g++ -std=c++11 -c src/dfs_iterator.cpp -o obj/dfs_iterator.o
+bin/ut_all: $(UT_ALL) $(TEST_HEADERS) $(SRC_HEADERS) $(ITERATOR_OBJ)
+	g++  -std=c++11 -Wfatal-errors -Wall -o bin/ut_all $(UT_ALL) $(ITERATOR_OBJ) -lgtest -lpthread
 
-bin/ut_all: test/ut_all.cpp test/ut_file.h test/ut_folder.h test/ut_iterator.h iterator.o dfs_iterator.o file.o folder.o
-	g++ -std=c++11 test/ut_all.cpp obj/iterator.o obj/dfs_iterator.o obj/file.o obj/folder.o -o bin/ut_all -lgtest -lpthread 
+$(ITERATOR_OBJ): $(ITERATOR_SRC)
+	g++  -std=c++11 -Wfatal-errors -Wall -c $< -o $@
 
 clean:
 	rm -rf bin obj
 
 dirs:
 	mkdir -p bin obj
-
-stat:
-	wc src/* test/*
