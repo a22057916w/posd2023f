@@ -1,9 +1,12 @@
 #pragma once 
 
-#include<list>
+
+
+#include <list>
 
 class Node;
 class Folder;
+// class FolderIterator;
 
 class Iterator {
 public:
@@ -18,16 +21,16 @@ public:
     }
 };
 
-class FolderIterator : public Iterator {
-public:
-    FolderIterator(Folder* composite);
-    ~FolderIterator() {}
-    void first();
-    Node * currentItem() const;
-    void next();
-    bool isDone() const;
+// class FolderIterator : public Iterator {
+// public:
+//     FolderIterator(Folder* composite);
+//     ~FolderIterator() {}
+//     void first();
+//     Node * currentItem() const;
+//     void next();
+//     bool isDone() const;
 
-private:
-    Folder* const _host;
-    std::list<Node *>::iterator _current;
-};
+// private:
+//     Folder* const _host;
+//     std::list<Node *>::iterator _current;
+// };

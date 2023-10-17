@@ -19,6 +19,20 @@ protected:
 
 public:
     Folder(string path): Node(path) {}
+    
+    class FolderIterator : public Iterator {
+    public:
+        FolderIterator(Folder* composite);
+        ~FolderIterator() {}
+        void first();
+        Node * currentItem() const;
+        void next();
+        bool isDone() const;
+
+    private:
+        Folder* const _host;
+        std::list<Node *>::iterator _current;
+    };
 
     void add(Node * node) {
         if (node->path() != this->path() + "/" + node->name()) {
