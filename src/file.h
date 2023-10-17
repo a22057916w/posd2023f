@@ -26,7 +26,7 @@ public:
         return pathList;
     }
 
-    void accept(Visitor * visitor) {
+    void accept(Visitor * visitor) override {
         visitor->visitFile(this);
     }
 };

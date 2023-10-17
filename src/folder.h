@@ -112,4 +112,8 @@ public:
             target->parent()->removeChild(target);
         }
     }
+
+    void accept(Visitor * visitor) override {
+        visitor->visitFolder(this);
+    }
 };
