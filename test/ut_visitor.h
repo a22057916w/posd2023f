@@ -52,4 +52,5 @@ class VisitorTest: public ::testing::Test {
     Node * ddd;
     Node * ca;
     Node * cqrs;
-}
+};
+
