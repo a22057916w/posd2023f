@@ -6,6 +6,7 @@
 #include "../src/find_by_name_visitor.h"
 
 class VisitorTest: public ::testing::Test {
+protected:
     void SetUp() {
         home = new Folder("/Users/user/home");
 
@@ -18,8 +19,11 @@ class VisitorTest: public ::testing::Test {
         document = new Folder("/Users/user/home/Documents");
         home->add(document);
 
-        note = new File("/Users/user/home/Documents/note.txt");
-        document->add(note);
+        note1 = new File("/Users/user/home/Documents/note.txt");
+        document->add(note1);
+
+        note2 = new File("/Users/user/home/Downloads/note.txt");
+        download->add(note2);
 
         favorite = new Folder("/Users/user/home/Documents/favorites");
         document->add(favorite);
@@ -36,7 +40,8 @@ class VisitorTest: public ::testing::Test {
         delete profile;
         delete download;
         delete document;
-        delete note;
+        delete note1;
+        delete note2;
         delete favorite;
         delete ddd;
         delete ca;
@@ -47,10 +52,20 @@ class VisitorTest: public ::testing::Test {
     Node * profile;
     Node * download;
     Node * document;
-    Node * note;
+    Node * note1;
+    Node * note2;
     Node * favorite;
     Node * ddd;
     Node * ca;
     Node * cqrs;
 };
 
+TEST_F(VisitorTest, FindByNameVisitorFolderWithSameFileNames) {
+    FindByNameVisitor * visitor = new FindByNameVisitor("note.txt");
+    home->accept(visitor);
+
+    EXPECT_EQ("home", home->name());
+    EXPECT_EQ(2, visitor->getPaths().size());
+    EXPECT_EQ("/Users/user/home/Documents/note.txt", visitor->getPaths().front());
+    
+}
