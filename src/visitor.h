@@ -7,5 +7,5 @@ class Visitor {
 public:
     virtual ~Visitor() {};
     virtual void visitFile(File * file) = 0;
-    void visitFolder(Folder * folder) {};
+    virtual void visitFolder(Folder * folder) = 0;
 };
