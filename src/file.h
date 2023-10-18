@@ -7,11 +7,11 @@ class File: public Node {
 public:
     File(string path): Node(path) {}
 
-    int numberOfFiles() const {
+    int numberOfFiles() const override  {
         return 1;
     }
 
-    Node * find(string path) {
+    Node * find(string path) override  {
         if (this->path() == path) {
             return this;
         }

@@ -12,7 +12,7 @@ private:
     list<Node *> _nodes;
 
 protected:
-    void removeChild(Node * target) {
+    void removeChild(Node * target) override  {
         _nodes.remove(target);
     }
 
@@ -33,7 +33,7 @@ public:
         std::list<Node *>::iterator _current;
     };
 
-    void add(Node * node) {
+    void add(Node * node) override {
         if (node->path() != this->path() + "/" + node->name()) {
             throw string("Incorrect path of node: " + node -> path());
         }
@@ -41,7 +41,7 @@ public:
         node->parent(this);
     }
 
-    Node * getChildByName(const char * name) const {
+    Node * getChildByName(const char * name) const override {
         for (auto it = _nodes.begin(); it != _nodes.end(); ++it) {
             if ((*it)->name() == name) {
                 return *it;
@@ -50,7 +50,7 @@ public:
         return nullptr;
     }
 
-    int numberOfFiles() const {
+    int numberOfFiles() const override {
         int num = 0;
         if (_nodes.size() == 0) {
             return 0;
@@ -61,15 +61,15 @@ public:
         return num;
     }
 
-    Iterator * createIterator() {
+    Iterator * createIterator() override {
         return new FolderIterator(this);
     }
 
-    Iterator * dfsIterator() {
+    Iterator * dfsIterator() override {
         return new DfsIterator(this);
     }
 
-    Node * find(string path) {
+    Node * find(string path) override {
         if (this->path() == path) {
             return this;
         }
@@ -106,7 +106,7 @@ public:
         return pathList;
     }
 
-    void remove(string path) {
+    void remove(string path) override {
         Node * target = find(path);
         if (target) {
             target->parent()->removeChild(target);
