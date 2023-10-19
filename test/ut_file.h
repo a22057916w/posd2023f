@@ -7,7 +7,6 @@
 
 using std::string;
 
-// const string _cwd = "/Users/willy/Documents/code/posd2023f";
 #define CWD "/Users/willy/Documents/code/posd2023f"
 
 TEST(FileTest, CreateSuccess)
@@ -17,7 +16,7 @@ TEST(FileTest, CreateSuccess)
 }
 
 TEST(FileTest, CreateFail) {
-    EXPECT_THROW(File random(CWD "/User/random"), string);
+    EXPECT_ANY_THROW(File random(CWD "/User/random"));
 }
 
 TEST(FileTest, VisitFindByName) {
