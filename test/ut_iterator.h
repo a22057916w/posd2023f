@@ -6,33 +6,39 @@
 #include "../src/iterator.h"
 #include "../src/dfs_iterator.h"
 
+#include <string>
+
+using std::string;
+
+#define CWD "/Users/willy/Documents/code/posd2023f"
+
 class IteratorTest: public ::testing::Test {
 protected:
     virtual void SetUp() {
-        home = new Folder("/Users/user/home");
+        home = new Folder(CWD "/Users/user/home");
 
-        profile = new File("/Users/user/home/my_profile");
+        profile = new File(CWD "/Users/user/home/my_profile");
         home->add(profile);
 
-        document = new Folder("/Users/user/home/Documents");
+        document = new Folder(CWD "/Users/user/home/Documents");
         home->add(document);
 
-        favorite = new Folder("/Users/user/home/Documents/favorites");
+        favorite = new Folder(CWD "/Users/user/home/Documents/favorites");
         document->add(favorite);
-        ddd = new File("/Users/user/home/Documents/favorites/domain-driven-design.pdf");
+        ddd = new File(CWD "/Users/user/home/Documents/favorites/domain-driven-design.pdf");
         favorite->add(ddd);
-        ca = new File("/Users/user/home/Documents/favorites/clean-architecture.pdf");
+        ca = new File(CWD "/Users/user/home/Documents/favorites/clean-architecture.pdf");
         favorite->add(ca);
-        cqrs = new File("/Users/user/home/Documents/favorites/cqrs.pdf");
+        cqrs = new File(CWD "/Users/user/home/Documents/favorites/cqrs.pdf");
         favorite->add(cqrs);
 
-        note = new File("/Users/user/home/Documents/note.txt");
+        note = new File(CWD "/Users/user/home/Documents/note.txt");
         document->add(note);
 
-        download = new Folder("/Users/user/home/Downloads");
+        download = new Folder(CWD "/Users/user/home/Downloads");
         home->add(download);
 
-        funny = new File("/Users/user/home/Downloads/funny.png");
+        funny = new File(CWD "/Users/user/home/Downloads/funny.png");
         download->add(funny);
     }
 

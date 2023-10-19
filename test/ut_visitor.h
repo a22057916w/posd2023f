@@ -12,30 +12,30 @@
 class VisitorTest: public ::testing::Test {
 protected:
     void SetUp() {
-        home = new Folder("/Users/user/home");
+        home = new Folder(CWD "/Users/user/home");
 
-        profile = new File("/Users/user/home/my_profile");
+        profile = new File(CWD "/Users/user/home/my_profile");
         home->add(profile);
 
-        download = new Folder("/Users/user/home/Downloads");
+        download = new Folder(CWD "/Users/user/home/Downloads");
         home->add(download);
 
-        document = new Folder("/Users/user/home/Documents");
+        document = new Folder(CWD "/Users/user/home/Documents");
         home->add(document);
 
-        note1 = new File("/Users/user/home/Documents/note.txt");
+        note1 = new File(CWD "/Users/user/home/Documents/note.txt");
         document->add(note1);
 
-        note2 = new File("/Users/user/home/Downloads/note.txt");
+        note2 = new File(CWD "/Users/user/home/Downloads/note.txt");
         download->add(note2);
 
-        favorite = new Folder("/Users/user/home/Documents/favorites");
+        favorite = new Folder(CWD "/Users/user/home/Documents/favorites");
         document->add(favorite);
-        ddd = new File("/Users/user/home/Documents/favorites/domain-driven-design.pdf");
+        ddd = new File(CWD "/Users/user/home/Documents/favorites/domain-driven-design.pdf");
         favorite->add(ddd);
-        ca = new File("/Users/user/home/Documents/favorites/clean-architecture.pdf");
+        ca = new File(CWD "/Users/user/home/Documents/favorites/clean-architecture.pdf");
         favorite->add(ca);
-        cqrs = new File("/Users/user/home/Documents/favorites/cqrs.pdf");
+        cqrs = new File(CWD "/Users/user/home/Documents/favorites/cqrs.pdf");
         favorite->add(cqrs);
     }
 
@@ -70,12 +70,6 @@ TEST_F(VisitorTest, FindByNameVisitorFolderWithSameFileNames) {
 
     EXPECT_EQ("home", home->name());
     EXPECT_EQ(2, visitor->getPaths().size());
-    EXPECT_EQ("/Users/user/home/Downloads/note.txt", visitor->getPaths().front());
+    EXPECT_EQ(CWD "/Users/user/home/Downloads/note.txt", visitor->getPaths().front());
     
-}
-
-TEST_F(VisitorTest, Istat) {
-    struct stat sb;
-    int i = stat("Users/user/home/Documents/note.txt", &sb);
-    EXPECT_EQ(0, i);
 }
