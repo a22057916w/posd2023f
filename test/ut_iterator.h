@@ -1,5 +1,6 @@
 #pragma once 
 
+#include "../src/constants.h"
 #include "../src/node.h"
 #include "../src/folder.h"
 #include "../src/file.h"
@@ -9,36 +10,35 @@
 #include <string>
 
 using std::string;
-
-#define CWD "/Users/willy/Documents/code/posd2023f"
+using Constants::CWD;
 
 class IteratorTest: public ::testing::Test {
 protected:
     virtual void SetUp() {
-        home = new Folder(CWD "/Users/user/home");
+        home = new Folder(CWD + "/Users/user/home");
 
-        profile = new File(CWD "/Users/user/home/my_profile");
+        profile = new File(CWD + "/Users/user/home/my_profile");
         home->add(profile);
 
-        document = new Folder(CWD "/Users/user/home/Documents");
+        document = new Folder(CWD + "/Users/user/home/Documents");
         home->add(document);
 
-        favorite = new Folder(CWD "/Users/user/home/Documents/favorites");
+        favorite = new Folder(CWD + "/Users/user/home/Documents/favorites");
         document->add(favorite);
-        ddd = new File(CWD "/Users/user/home/Documents/favorites/domain-driven-design.pdf");
+        ddd = new File(CWD + "/Users/user/home/Documents/favorites/domain-driven-design.pdf");
         favorite->add(ddd);
-        ca = new File(CWD "/Users/user/home/Documents/favorites/clean-architecture.pdf");
+        ca = new File(CWD + "/Users/user/home/Documents/favorites/clean-architecture.pdf");
         favorite->add(ca);
-        cqrs = new File(CWD "/Users/user/home/Documents/favorites/cqrs.pdf");
+        cqrs = new File(CWD + "/Users/user/home/Documents/favorites/cqrs.pdf");
         favorite->add(cqrs);
 
-        note = new File(CWD "/Users/user/home/Documents/note.txt");
+        note = new File(CWD + "/Users/user/home/Documents/note.txt");
         document->add(note);
 
-        download = new Folder(CWD "/Users/user/home/Downloads");
+        download = new Folder(CWD + "/Users/user/home/Downloads");
         home->add(download);
 
-        funny = new File(CWD "/Users/user/home/Downloads/funny.png");
+        funny = new File(CWD + "/Users/user/home/Downloads/funny.png");
         download->add(funny);
     }
 
