@@ -67,6 +67,16 @@ protected:
     Node * cqrs;
 };
 
+TEST_F(FindByNameVisitorTest, FileFound) {
+    FindByNameVisitor * visitor = new FindByNameVisitor("cqrs.pdf");
+    
+    cqrs->accept(visitor);
+    EXPECT_EQ(1, visitor->getPaths().size());
+    EXPECT_EQ(CWD "/Users/user/home/Documents/favorites/cqrs.pdf", visitor->getPaths().front());
+    delete visitor;
+}
+
+
 TEST_F(FindByNameVisitorTest, FolderWithNoFile) {
     FindByNameVisitor * visitor = new FindByNameVisitor("empty.none");
     
