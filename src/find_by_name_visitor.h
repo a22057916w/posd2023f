@@ -24,10 +24,7 @@ public:
 
         auto it = folder->createIterator();
          for(it->first(); !it->isDone(); it->next()){
-            it->currentItem()->accept(this);
-        //     // std::list<string> paths = (*it)->findByName(_name);
-        //     // for (auto i = paths.begin(); i != paths.end(); i++)
-        //     //     pathList.push_back(*i);   
+            it->currentItem()->accept(this);   
         }
     }
 
