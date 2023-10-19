@@ -76,8 +76,43 @@ TEST_F(FindByNameVisitorTest, FileFound) {
     delete visitor;
 }
 
+TEST_F(FindByNameVisitorTest, FileNotFound) {
+    FindByNameVisitor * visitor = new FindByNameVisitor("empty.none");
 
-TEST_F(FindByNameVisitorTest, FolderWithNoFile) {
+    cqrs->accept(visitor);
+    EXPECT_EQ(0, visitor->getPaths().size());
+
+    delete visitor;
+}
+
+TEST_F(FindByNameVisitorTest, FileWillNotFoundFloder) {
+    FindByNameVisitor * visitor = new FindByNameVisitor("empty");
+
+    cqrs->accept(visitor);
+    EXPECT_EQ(0, visitor->getPaths().size());
+
+    delete visitor;
+}
+
+TEST_F(FindByNameVisitorTest, FolderFound) {
+    FindByNameVisitor * visitor = new FindByNameVisitor("home");
+    
+    home->accept(visitor);
+    EXPECT_EQ(1, visitor->getPaths().size());
+    EXPECT_EQ(CWD + "/Users/user/home", visitor->getPaths().front());
+    delete visitor;
+}
+
+TEST_F(FindByNameVisitorTest, FolderNotFound) {
+    FindByNameVisitor * visitor = new FindByNameVisitor("root");
+    
+    home->accept(visitor);
+    EXPECT_EQ(0, visitor->getPaths().size());
+    
+    delete visitor;
+}
+
+TEST_F(FindByNameVisitorTest, FolderFoundNoFile) {
     FindByNameVisitor * visitor = new FindByNameVisitor("empty.none");
     
     home->accept(visitor);
@@ -87,7 +122,7 @@ TEST_F(FindByNameVisitorTest, FolderWithNoFile) {
 }
 
 
-TEST_F(FindByNameVisitorTest, FolderWithOneFile) {
+TEST_F(FindByNameVisitorTest, FolderFoundOneFile) {
     FindByNameVisitor * visitor = new FindByNameVisitor("domain-driven-design.pdf");
 
     home->accept(visitor);
@@ -97,7 +132,7 @@ TEST_F(FindByNameVisitorTest, FolderWithOneFile) {
     delete visitor;
 }
 
-TEST_F(FindByNameVisitorTest, FolderWithManyFile) {
+TEST_F(FindByNameVisitorTest, FolderFoundManyFile) {
     FindByNameVisitor * visitor = new FindByNameVisitor("note.txt");
     home->accept(visitor);
 
