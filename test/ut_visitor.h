@@ -5,6 +5,10 @@
 #include "../src/file.h"
 #include "../src/find_by_name_visitor.h"
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 class VisitorTest: public ::testing::Test {
 protected:
     void SetUp() {
@@ -68,4 +72,10 @@ TEST_F(VisitorTest, FindByNameVisitorFolderWithSameFileNames) {
     EXPECT_EQ(2, visitor->getPaths().size());
     EXPECT_EQ("/Users/user/home/Downloads/note.txt", visitor->getPaths().front());
     
+}
+
+TEST_F(VisitorTest, Istat) {
+    struct stat sb;
+    int i = stat("Users/user/home/Documents/note.txt", &sb);
+    EXPECT_EQ(0, i);
 }
