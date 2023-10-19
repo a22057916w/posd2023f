@@ -3,9 +3,22 @@
 #include "node.h"
 #include "visitor.h"
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <string.h>
+
+using std::string;
+
 class File: public Node {
 public:
-    File(string path): Node(path) {}
+    File(string path): Node(path) {
+        struct stat sb;
+        if(stat(path.c_str(), &sb) == -1) {
+            throw string("Path not Found");
+        }
+
+    }
 
     int numberOfFiles() const override  {
         return 1;
