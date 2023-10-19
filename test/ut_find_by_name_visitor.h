@@ -67,6 +67,16 @@ protected:
     Node * cqrs;
 };
 
+TEST_F(FindByNameVisitorTest, FolderWithNoFile) {
+    FindByNameVisitor * visitor = new FindByNameVisitor("empty.none");
+    
+    home->accept(visitor);
+    EXPECT_EQ(0, visitor->getPaths().size());
+    
+    delete visitor;
+}
+
+
 TEST_F(FindByNameVisitorTest, FolderWithOneFile) {
     FindByNameVisitor * visitor = new FindByNameVisitor("domain-driven-design.pdf");
 
