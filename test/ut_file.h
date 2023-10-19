@@ -11,12 +11,12 @@ using std::string;
 
 TEST(FileTest, CreateFileSuccess) {
     File * hello = new File(CWD "/Users/user/home/hello.txt");
-    ASSERT_EQ(hello->path(), "/Users/willy/Documents/code/posd2023f/Users/user/home/hello.txt");
+    ASSERT_EQ(hello->path(), CWD "/Users/user/home/hello.txt");
     delete hello;
 }
 
 TEST(FileTest, CreateFileFail) {
-    EXPECT_ANY_THROW(File random(CWD "/User/random"));
+    EXPECT_ANY_THROW(File random(CWD "/User/random.txt"));
 }
 
 TEST(FileTest, createFolderFail) {
