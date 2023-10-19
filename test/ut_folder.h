@@ -1,34 +1,39 @@
 #pragma once 
 
-#include <string>
 #include "../src/folder.h"
+#include "../src/file.h"
 
-using namespace std;
+#include <string>
+
+using std::string;
+
+
+#define CWD "/Users/willy/Documents/code/posd2023f"
 
 TEST(Folder, normal) {
-    Folder home("/Users/user/home");
+    Folder home(CWD "/Users/user/home");
 
     ASSERT_EQ("home", home.name());
-    ASSERT_EQ("/Users/user/home", home.path());
+    ASSERT_EQ(CWD "/Users/user/home", home.path());
 }
 
 TEST(Folder, add_file) {
-    Folder home("/Users/user/home");
-    File hello("/Users/user/home/hello.txt");
+    Folder home(CWD "/Users/user/home");
+    File hello(CWD "/Users/user/home/hello.txt");
+    
     home.add(&hello);
-
     ASSERT_EQ("hello.txt", home.getChildByName("hello.txt")->name());
 }
 
 TEST(Folder, add_incorrect_path_file_to_folder) {
-    Folder home("/Users/user/home");
-    File hello("/Users/user/home/Documents/hello.txt");
-    ASSERT_ANY_THROW(home.add(&hello));
+    Folder home(CWD "/Users/user/home");
+    File note(CWD "/Users/user/home/Documents/note.txt");
+    ASSERT_ANY_THROW(home.add(&note));
 }
 
 TEST(Folder, add_folder) {
-    Folder home("/Users/user/home");
-    Folder document("/Users/user/home/Documents");
+    Folder home(CWD "/Users/user/home");
+    Folder document(CWD "/Users/user/home/Documents");
 
     home.add(&document);
 
