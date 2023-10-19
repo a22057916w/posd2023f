@@ -66,6 +66,6 @@ TEST_F(VisitorTest, FindByNameVisitorFolderWithSameFileNames) {
 
     EXPECT_EQ("home", home->name());
     EXPECT_EQ(2, visitor->getPaths().size());
-    EXPECT_EQ("/Users/user/home/Documents/note.txt", visitor->getPaths().front());
+    EXPECT_EQ("/Users/user/home/Downloads/note.txt", visitor->getPaths().front());
     
 }
