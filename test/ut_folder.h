@@ -10,6 +10,20 @@ using std::string;
 
 #define CWD "/Users/willy/Documents/code/posd2023f"
 
+TEST(Folder, createFolderSuccess) {
+    Folder * download = new Folder(CWD "/Users/user/home/downloads");
+    EXPECT_EQ(CWD "/Users/user/home/downloads", download->path());
+    delete download;
+}
+
+TEST(Folder, createFolderFail) {
+    EXPECT_ANY_THROW(new Folder(CWD "/User/user/device"));
+}
+
+TEST(Folder, createFileFail) {
+    EXPECT_ANY_THROW(new Folder(CWD "/Users/user/home/hello.txt"));
+}
+
 TEST(Folder, normal) {
     Folder home(CWD "/Users/user/home");
 
