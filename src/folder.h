@@ -1,9 +1,15 @@
 #pragma once
 
-#include <list>
+
 #include "node.h"
 #include "iterator.h"
 #include "dfs_iterator.h"
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <list>
+#include <string>
 
 using namespace std;
 
@@ -17,7 +23,16 @@ protected:
     }
 
 public:
-    Folder(string path): Node(path) {}
+    Folder(string path): Node(path) {
+        struct stat sb;
+        // if folder not found, throw exception
+        if(stat(path.c_str(), &sb) == -1)
+            throw string("Path not Found");
+        // if the paht is a file, throw exception
+        if(S_ISREG(sb.st_mode))
+            throw string("Path is a File");
+
+    }
 
     class FolderIterator : public Iterator {
     public:
