@@ -83,16 +83,16 @@ TEST_F(IteratorTest, Normal) {
 }
 
 TEST_F(IteratorTest, NotAvaliableIterator) {
-    Iterator * fit = home->createIterator();
-    fit->first();
-    ASSERT_FALSE(fit->isDone());
+    Iterator * it = home->createIterator();
+    it->first();
+    ASSERT_FALSE(it->isDone());
    
-    ASSERT_EQ("my_profile", fit->currentItem()->name());
+    ASSERT_EQ("my_profile", it->currentItem()->name());
 
     home->remove("./test/Users/user/home/Documents/favorites/cqrs.pdf");
     EXPECT_EQ(5, home->numberOfFiles());
-    EXPECT_FALSE(fit->originSize());
-    ASSERT_ANY_THROW(fit->next());
+    EXPECT_FALSE(it->originSize());
+    ASSERT_ANY_THROW(it->next());
 }
 
 TEST_F(IteratorTest, DFS) {
