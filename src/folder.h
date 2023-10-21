@@ -18,15 +18,13 @@ private:
     list<Node *> _nodes;
 
 protected:
-    bool modified = false;
-
     void removeChild(Node * target) override  {
         _nodes.remove(target);
     }
 
 public:
     Folder(string path): Node(path) {
-        if (nodeType != "folder")
+        if (this->type() != "folder")
             throw(std::string("It is not Folder!"));
     }
 
@@ -36,6 +34,7 @@ public:
             _size = _host->numberOfFiles();
         }
         ~FolderIterator() {}
+
         void first() override {
             if(!originSize())
                 throw std::string("File Structure Has Been Modified.");

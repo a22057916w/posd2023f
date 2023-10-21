@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
+#include <list>
 #include <string>
 
 using namespace std;
@@ -26,17 +26,16 @@ protected:
         switch (_st.st_mode & S_IFMT)
         {
         case S_IFREG:
-            nodeType = "file";
+            _node_type = "file";
             break;
         case S_IFDIR:
-            nodeType = "folder";
+            _node_type = "folder";
             break;
         }
 
     }
     
-    std::string nodeType;
-    bool _modified = false;
+    string _node_type;
 
 public:
     virtual ~Node() {}
@@ -63,7 +62,7 @@ public:
     }
     
     string type() const {
-        return nodeType;
+        return _node_type;
     }
 
     virtual void add(Node * node) {

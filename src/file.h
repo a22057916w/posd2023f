@@ -13,7 +13,7 @@ using std::string;
 class File: public Node {
 public:
     File(string path): Node(path) {
-        if (nodeType != "file")
+        if (this->type() != "file")
             throw(std::string("It is not File!"));
     }
 
