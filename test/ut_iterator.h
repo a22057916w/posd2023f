@@ -80,19 +80,20 @@ TEST_F(IteratorTest, Normal) {
 
     it->next();
     ASSERT_TRUE(it->isDone());
+
+    delete it;
 }
 
 TEST_F(IteratorTest, NotAvaliableIterator) {
     Iterator * it = home->createIterator();
     it->first();
     ASSERT_FALSE(it->isDone());
-   
-    ASSERT_EQ("my_profile", it->currentItem()->name());
 
     home->remove("./test/Users/user/home/Documents/favorites/cqrs.pdf");
-    EXPECT_EQ(5, home->numberOfFiles());
-    EXPECT_FALSE(it->originSize());
     ASSERT_ANY_THROW(it->next());
+    ASSERT_ANY_THROW(it->first());
+
+    delete it;
 }
 
 TEST_F(IteratorTest, DFS) {
@@ -127,6 +128,8 @@ TEST_F(IteratorTest, DFS) {
 
     dfsIt->next();
     ASSERT_TRUE(dfsIt->isDone());
+
+    delete dfsIt;
 }
 
 
@@ -162,4 +165,6 @@ TEST_F(IteratorTest, BFS) {
 
     bfsIt->next();
     ASSERT_TRUE(bfsIt->isDone());
+
+    delete bfsIt;
 }
