@@ -13,15 +13,8 @@ using std::string;
 class File: public Node {
 public:
     File(string path): Node(path) {
-        struct stat sb;
-        // if file not found, throw exception
-        if(stat(path.c_str(), &sb) == -1) {
-            throw string("Path not Found");
-        }
-        // if the path is a folder, throw exception
-        if(S_ISDIR(sb.st_mode)) {
-            throw string("Path is a Direcyory");
-        }
+        if (nodeType != "file")
+            throw(std::string("It is not File!"));
     }
 
     int numberOfFiles() const override  {

@@ -18,33 +18,48 @@ private:
     list<Node *> _nodes;
 
 protected:
+    bool modified = false;
+
     void removeChild(Node * target) override  {
         _nodes.remove(target);
     }
 
 public:
     Folder(string path): Node(path) {
-        struct stat sb;
-        // if folder not found, throw exception
-        if(stat(path.c_str(), &sb) == -1)
-            throw string("Path not Found");
-        // if the paht is a file, throw exception
-        if(S_ISREG(sb.st_mode))
-            throw string("Path is a File");
-
+        if (nodeType != "folder")
+            throw(std::string("It is not Folder!"));
     }
 
     class FolderIterator : public Iterator {
     public:
-        FolderIterator(Folder* composite);
+        FolderIterator(Folder* composite): _host(composite) {
+            _size = _host->numberOfFiles();
+        }
         ~FolderIterator() {}
-        void first();
-        Node * currentItem() const;
-        void next();
-        bool isDone() const;
+        void first() override {
+            if(!originSize())
+                throw std::string("File Structure Has Been Modified.");
+            _current = _host->_nodes.begin();
+        }
+        Node * currentItem() const override {
+            return *_current;
+        }
+        void next() override {
+            if(!originSize())
+                throw std::string("File Structure Has Been Modified.");
+            _current++;
+        }
+        bool isDone() const override {
+            return _current == _host->_nodes.end();
+        }
+
+        bool originSize() const override {
+            return _size == _host->numberOfFiles();
+        }
 
     private:
-        Folder* const _host;
+        int _size;
+        Folder * const _host;
         std::list<Node *>::iterator _current;
     };
 

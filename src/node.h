@@ -4,6 +4,10 @@
 #include "null_iterator.h"
 #include "visitor.h"
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 #include <string>
 
 using namespace std;
@@ -12,9 +16,27 @@ class Node {
 private:
     string _path;
     Node * _parent;
+    struct stat _st;
 protected:
 
-    Node(string path): _path(path) {}
+    Node(string path): _path(path) {
+        if (stat(_path.c_str(), &_st) != 0)
+            throw(std::string("Node is not exist!"));
+
+        switch (_st.st_mode & S_IFMT)
+        {
+        case S_IFREG:
+            nodeType = "file";
+            break;
+        case S_IFDIR:
+            nodeType = "folder";
+            break;
+        }
+
+    }
+    
+    std::string nodeType;
+    bool _modified = false;
 
 public:
     virtual ~Node() {}

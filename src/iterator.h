@@ -19,6 +19,7 @@ public:
     virtual bool isDone() const {
         return true;
     }
+    virtual bool originSize() const { return false;}
 };
 
 // class FolderIterator : public Iterator {

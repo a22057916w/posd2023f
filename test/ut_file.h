@@ -1,54 +1,52 @@
 #pragma once
 
-#include "../src/constants.h"
 #include "../src/file.h"
 #include "../src/find_by_name_visitor.h"
 
 #include <string>
 
 using std::string;
-using Constants::CWD;
 
 TEST(FileTest, CreateFileSuccess) {
-    File * hello = new File(CWD + "/Users/user/home/hello.txt");
-    ASSERT_EQ(hello->path(), CWD + "/Users/user/home/hello.txt");
-    delete hello;
+    File * cqrs = new File("./test/Users/user/home/Documents/favorites/cqrs.pdf");
+    ASSERT_EQ(cqrs->path(), "./test/Users/user/home/Documents/favorites/cqrs.pdf");
+    delete cqrs;
 }
 
 TEST(FileTest, CreateFileFail) {
-    EXPECT_ANY_THROW(File random(CWD + "/User/random.txt"));
+    EXPECT_ANY_THROW(File random("./test/User/random.txt"));
 }
 
 TEST(FileTest, createFolderFail) {
-    EXPECT_ANY_THROW(File home(CWD + "/Users/user/home"));
+    EXPECT_ANY_THROW(File home("./test/Users/user/home"));
 }
 
 TEST(FileTest, FindFileExist) {
-    Node * hello = new File(CWD + "/Users/user/home/hello.txt");
-    EXPECT_EQ(hello, hello->find(CWD + "/Users/user/home/hello.txt"));
-    delete hello;
+    Node * cqrs = new File("./test/Users/user/home/Documents/favorites/cqrs.pdf");
+    EXPECT_EQ(cqrs, cqrs->find("./test/Users/user/home/Documents/favorites/cqrs.pdf"));
+    delete cqrs;
 }
 
 TEST(FileTest, FindFileNotExist) {
-    Node * hello = new File(CWD + "/Users/user/home/hello.txt");
-    EXPECT_EQ(nullptr, hello->find(CWD + "/Users/user/home/note.txt"));
-    delete hello;
+    Node * cqrs = new File("./test/Users/user/home/Documents/favorites/cqrs.pdf");
+    EXPECT_EQ(nullptr, cqrs->find("./test/Users/user/home/note.txt"));
+    delete cqrs;
 }
 
-TEST(FileTest, NumberOFFiles) {
-    Node * hello = new File(CWD + "/Users/user/home/hello.txt");
-    EXPECT_EQ(1, hello->numberOfFiles());
-    delete hello;
+TEST(FileTest, NumberOfFiles) {
+    Node * cqrs = new File("./test/Users/user/home/Documents/favorites/cqrs.pdf");
+    EXPECT_EQ(1, cqrs->numberOfFiles());
+    delete cqrs;
 }
 
 TEST(FileTest, VisitFindByName) {
-    File * hello = new File(CWD + "/Users/user/home/hello.txt");
-    FindByNameVisitor * visitor = new FindByNameVisitor("hello.txt");
+    File * cqrs = new File("./test/Users/user/home/Documents/favorites/cqrs.pdf");
+    FindByNameVisitor * visitor = new FindByNameVisitor("cqrs.pdf");
 
-    hello->accept(visitor);
+    cqrs->accept(visitor);
     EXPECT_EQ(1, visitor->getPaths().size());
-    EXPECT_EQ(CWD + "/Users/user/home/hello.txt", visitor->getPaths().front());
+    EXPECT_EQ("./test/Users/user/home/Documents/favorites/cqrs.pdf", visitor->getPaths().front());
 
-    delete hello;
+    delete cqrs;
     delete visitor;
 }

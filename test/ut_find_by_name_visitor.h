@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../src/constants.h"
 #include "../src/node.h"
 #include "../src/folder.h"
 #include "../src/file.h"
@@ -9,36 +8,35 @@
 #include <string>
 
 using std::string;
-using Constants::CWD;
 
 
 class FindByNameVisitorTest: public ::testing::Test {
 protected:
     void SetUp() {
-        home = new Folder(CWD + "/Users/user/home");
+        home = new Folder("./test/Users/user/home");
 
-        profile = new File(CWD + "/Users/user/home/my_profile");
+        profile = new File("./test/Users/user/home/my_profile");
         home->add(profile);
 
-        download = new Folder(CWD + "/Users/user/home/Downloads");
+        download = new Folder("./test/Users/user/home/Downloads");
         home->add(download);
 
-        document = new Folder(CWD + "/Users/user/home/Documents");
+        document = new Folder("./test/Users/user/home/Documents");
         home->add(document);
 
-        note1 = new File(CWD + "/Users/user/home/Documents/note.txt");
+        note1 = new File("./test/Users/user/home/Documents/note.txt");
         document->add(note1);
 
-        note2 = new File(CWD + "/Users/user/home/Downloads/note.txt");
+        note2 = new File("./test/Users/user/home/Downloads/note.txt");
         download->add(note2);
 
-        favorite = new Folder(CWD + "/Users/user/home/Documents/favorites");
+        favorite = new Folder("./test/Users/user/home/Documents/favorites");
         document->add(favorite);
-        ddd = new File(CWD + "/Users/user/home/Documents/favorites/domain-driven-design.pdf");
+        ddd = new File("./test/Users/user/home/Documents/favorites/domain-driven-design.pdf");
         favorite->add(ddd);
-        ca = new File(CWD + "/Users/user/home/Documents/favorites/clean-architecture.pdf");
+        ca = new File("./test/Users/user/home/Documents/favorites/clean-architecture.pdf");
         favorite->add(ca);
-        cqrs = new File(CWD + "/Users/user/home/Documents/favorites/cqrs.pdf");
+        cqrs = new File("./test/Users/user/home/Documents/favorites/cqrs.pdf");
         favorite->add(cqrs);
     }
 
@@ -72,7 +70,7 @@ TEST_F(FindByNameVisitorTest, FileFound) {
     
     cqrs->accept(visitor);
     EXPECT_EQ(1, visitor->getPaths().size());
-    EXPECT_EQ(CWD + "/Users/user/home/Documents/favorites/cqrs.pdf", visitor->getPaths().front());
+    EXPECT_EQ("./test/Users/user/home/Documents/favorites/cqrs.pdf", visitor->getPaths().front());
     delete visitor;
 }
 
@@ -99,7 +97,7 @@ TEST_F(FindByNameVisitorTest, FolderFound) {
     
     home->accept(visitor);
     EXPECT_EQ(1, visitor->getPaths().size());
-    EXPECT_EQ(CWD + "/Users/user/home", visitor->getPaths().front());
+    EXPECT_EQ("./test/Users/user/home", visitor->getPaths().front());
     delete visitor;
 }
 
@@ -127,7 +125,7 @@ TEST_F(FindByNameVisitorTest, FolderFoundOneFile) {
 
     home->accept(visitor);
     EXPECT_EQ(1, visitor->getPaths().size());
-    EXPECT_EQ(CWD + "/Users/user/home/Documents/favorites/domain-driven-design.pdf", visitor->getPaths().front());
+    EXPECT_EQ("./test/Users/user/home/Documents/favorites/domain-driven-design.pdf", visitor->getPaths().front());
 
     delete visitor;
 }
@@ -138,7 +136,7 @@ TEST_F(FindByNameVisitorTest, FolderFoundManyFile) {
 
     EXPECT_EQ("home", home->name());
     EXPECT_EQ(2, visitor->getPaths().size());
-    EXPECT_EQ(CWD + "/Users/user/home/Downloads/note.txt", visitor->getPaths().front());
+    EXPECT_EQ("./test/Users/user/home/Downloads/note.txt", visitor->getPaths().front());
     
     delete visitor;
 }
