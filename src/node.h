@@ -62,6 +62,10 @@ public:
         return _path;
     }
     
+    string type() const {
+        return nodeType;
+    }
+
     virtual void add(Node * node) {
         throw string("This node does not support adding sub node");
     }
