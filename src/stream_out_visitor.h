@@ -19,7 +19,7 @@ public:
             throw std::string("Open Fail.");
         
         std::stringstream input_string;
-            // Output the file path
+        // Put the file path
         input_string << "_____________________________________________\n";
         input_string << file->path() << "\n";
         input_string << "---------------------------------------------\n";
@@ -41,15 +41,15 @@ public:
         auto it = folder->createIterator();
          for(it->first(); !it->isDone(); it->next()) {
             it->currentItem()->accept(this);
+
             if(it->currentItem()->type() == "file")
                 _output += "\n";
          }
     }
 
-    string getResult() const { return _output;}
+    string getResult() const { return _output; }
 
 private:
     string _name;
     string _output = "";
-    std::list<string> _pathList;
 };
