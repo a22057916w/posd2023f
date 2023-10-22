@@ -1,1 +1,4 @@
-### Composite Patterns
+## Composite Patterns
+## Iterator
+## Visitor
+## Factory Method
