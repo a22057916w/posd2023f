@@ -1,4 +1,5 @@
 ## Composite Patterns
+* Tree Structure: An interface or rule provided by Composite(Node), and applied by its Component(File, Folder) 
 * i.e. FileSystem -> Node, File, Folder
 
 ## Iterator
