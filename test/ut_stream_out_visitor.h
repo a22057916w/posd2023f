@@ -43,7 +43,7 @@ TEST_F(StreamOutVisitorTest, StreamOutFile) {
     StreamOutVisitor * visitor = new StreamOutVisitor();
 
     hello->accept(visitor);
-    string expect_output = "_____________________________________________\n./test/Users/user/home/hello.txt\n---------------------------------------------\nhello, world\r\nhello\n_____________________________________________\n";
+    string expect_output = "_____________________________________________\n./test/Users/user/home/hello.txt\n---------------------------------------------\nhello, world\nhello\n_____________________________________________\n";
     EXPECT_EQ(expect_output, visitor->getResult());
 
     delete visitor;
@@ -53,7 +53,7 @@ TEST_F(StreamOutVisitorTest, StreamOutFolder) {
     StreamOutVisitor * visitor = new StreamOutVisitor();
 
     home->accept(visitor);
-    string expect_output = "_____________________________________________\n./test/Users/user/home/hello.txt\n---------------------------------------------\nhello, world\r\nhello\n_____________________________________________\n\n_____________________________________________\n./test/Users/user/home/Documents/note.txt\n---------------------------------------------\nhello, world\n_____________________________________________\n\n";
+    string expect_output = "_____________________________________________\n./test/Users/user/home/hello.txt\n---------------------------------------------\nhello, world\nhello\n_____________________________________________\n\n_____________________________________________\n./test/Users/user/home/Documents/note.txt\n---------------------------------------------\nhello, world\n_____________________________________________\n\n";
     EXPECT_EQ(expect_output, visitor->getResult());
 
     delete visitor;
