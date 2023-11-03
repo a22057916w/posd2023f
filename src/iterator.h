@@ -1,5 +1,7 @@
 #pragma once 
 
+#include<list>
+
 class Node;
 class Folder;
 
@@ -14,5 +16,4 @@ public:
     virtual bool isDone() const {
         return true;
     }
-    virtual bool originSize() const { return true;}
 };

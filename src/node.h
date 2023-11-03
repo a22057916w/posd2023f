@@ -1,14 +1,9 @@
-#pragma once 
+#pragma once
 
+#include<string>
 #include "iterator.h"
-#include "null_iterator.h"
 #include "visitor.h"
-
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <list>
-#include <string>
+#include "null_iterator.h"
 
 using namespace std;
 
@@ -16,26 +11,9 @@ class Node {
 private:
     string _path;
     Node * _parent;
-    struct stat _st;
 protected:
 
-    Node(string path): _path(path) {
-        if (stat(_path.c_str(), &_st) != 0)
-            throw(std::string("Node is not exist!"));
-
-        switch (_st.st_mode & S_IFMT)
-        {
-        case S_IFREG:
-            _node_type = "file";
-            break;
-        case S_IFDIR:
-            _node_type = "folder";
-            break;
-        }
-
-    }
-    
-    string _node_type;
+    Node(string path): _path(path) {}
 
 public:
     virtual ~Node() {}
@@ -61,10 +39,6 @@ public:
         return _path;
     }
     
-    string type() const {
-        return _node_type;
-    }
-
     virtual void add(Node * node) {
         throw string("This node does not support adding sub node");
     }
@@ -79,17 +53,13 @@ public:
         return new NullIterator();
     }
 
-    virtual Iterator * dfsIterator() {
-        return new NullIterator();
-    }
-
     virtual Node * find(string path) = 0;
-    
+
     virtual std::list<string> findByName(string name) = 0;
-    
+
     virtual void remove(string path) {
         throw string("This node does not support deleting sub node");
     }
 
-    virtual void accept(Visitor * visitor) {};
+    virtual void accept(Visitor * visitor) = 0;
 };

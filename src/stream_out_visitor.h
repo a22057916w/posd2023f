@@ -3,53 +3,39 @@
 #include "file.h"
 #include "folder.h"
 #include "visitor.h"
-
-
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <string>
 
 class StreamOutVisitor : public Visitor {
 public:
-    void visitFile(File * file) { 
-        std::ifstream fin(file->path());
+    void visitFile(File * file) override {
+        std::ifstream t(file->path());
+        std::stringstream buffer;
 
-        if(!fin.is_open())
-            throw std::string("Open Fail.");
-        
-        std::stringstream input_string;
-        // Put the file path
-        input_string << "_____________________________________________\n";
-        input_string << file->path() << "\n";
-        input_string << "---------------------------------------------\n";
+        buffer << t.rdbuf(); 
 
-        // Read and output the file contents line by line
-        std::string line;
-        while (std::getline(fin, line)) {
-            input_string << line << std::endl;
-        }
-        input_string << "_____________________________________________\n";
-
-        fin.close();
-
-        _output += input_string.str();
-        
+        _result += "_____________________________________________\n";
+        _result += file->path() + "\n";
+        _result += "---------------------------------------------\n";
+        _result += buffer.str() + "\n";
+        _result += "_____________________________________________\n";
     }
 
-    void visitFolder(Folder * folder) {
-        auto it = folder->createIterator();
-         for(it->first(); !it->isDone(); it->next()) {
+    void visitFolder(Folder * folder) override {
+        Iterator * it = folder->createIterator();
+
+        for(it->first(); !it->isDone(); it->next()) {
             it->currentItem()->accept(this);
-
-            if(it->currentItem()->type() == "file")
-                _output += "\n";
-         }
+            if(dynamic_cast<File *>(it->currentItem()))
+                _result += "\n";
+        }
     }
 
-    string getResult() const { return _output; }
+    string getResult() const {
+        return _result;
+    }
 
 private:
-    string _name;
-    string _output = "";
+    string _result;
 };

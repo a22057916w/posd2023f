@@ -3,25 +3,23 @@
 #include "node.h"
 #include "visitor.h"
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <string>
-
-using std::string;
-
 class File: public Node {
 public:
     File(string path): Node(path) {
-        if (this->type() != "file")
-            throw(std::string("It is not File!"));
+        struct stat fileInfo;
+        const char *c = path.c_str();
+        if(lstat(c, &fileInfo) == 0){
+            if(S_ISREG(fileInfo.st_mode))
+                return;
+        }
+        throw "No File exists";
     }
 
-    int numberOfFiles() const override  {
+    int numberOfFiles() const override {
         return 1;
     }
 
-    Node * find(string path) override  {
+    Node * find(string path) override {
         if (this->path() == path) {
             return this;
         }
