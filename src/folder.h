@@ -1,9 +1,16 @@
 #pragma once 
 
-#include <list>
-#include <sys/stat.h>
 #include "node.h"
 #include "iterator.h"
+#include "order_by.h"
+
+
+#include <list>
+#include <sys/stat.h>
+#include <algorithm>
+#include <cstring>
+#include <string>
+
 
 using namespace std;
 
@@ -59,10 +66,6 @@ public:
         return num;
     }
 
-    Iterator * createIterator() override {
-        return new FolderIterator(this, _operationCount);
-    }
-
     Node * find(string path) override {
         if (this->path() == path) {
             return this;
@@ -111,9 +114,25 @@ public:
         visitor->visitFolder(this);
     }
 
+    // opration overloading for compare folder and files names in alphabetically
+    // bool operator<(const Node * node) const {
+    //     return strcmp(this->name().c_str(), node->name().c_str()) < 0;
+    // }
+
+    Iterator * createIterator() override {
+        return new FolderIterator(this, _operationCount);
+    }
+
+    Iterator * createIterator(OrderBy category) override {
+        if(category == OrderBy::Normal)
+            return new FolderIterator(this, _operationCount);
+        else if(category == OrderBy::Name)
+            return new OrderByNameIterator(this, _operationCount);
+    }
+
     class FolderIterator : public Iterator {
     public:
-        FolderIterator(Folder* composite, int operationCount) : _host(composite), _operationCount(operationCount)  {}
+        FolderIterator(Folder* composite, int operationCount) : _host(composite), _operationCount(operationCount) {}
 
         ~FolderIterator() {}
 
@@ -148,7 +167,47 @@ public:
     };
 
     class OrderByNameIterator: public Iterator {
-    
+    public:
+        OrderByNameIterator(Folder * composite, int operationCount): _host(composite), _operationCount(operationCount) {
+            // copy _host->_nodes to this->_nodes
+            std::copy(_host->_nodes.begin(), _host->_nodes.end(), std::back_inserter(_nodes));
+            
+            // sort the list alphabetically
+            _nodes.sort([](const Node * n1, const Node * n2) {
+                return n1->name() < n2->name();
+            });  
+        };
+        ~OrderByNameIterator() {}
+
+         void first() {
+            checkAvailable();
+            _current = _nodes.begin();
+        }
+
+        Node * currentItem() const {
+            return *_current;
+        }
+
+        void next() {
+            checkAvailable();
+            _current++;
+        }
+
+        bool isDone() const {
+            return _current == _nodes.end();
+        }
+
+    private:
+        Folder * const _host;
+        std::list<Node *> _nodes;
+        std::list<Node *>::iterator _current;
+        int _operationCount;
+
+        void checkAvailable() const {
+            if(_host->_operationCount != _operationCount) {
+                throw "Iterator Not Avaliable";
+            }
+        }
     };
 
     class OrderByNameWithFolderFirstIterator: public Iterator {
