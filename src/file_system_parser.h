@@ -9,11 +9,13 @@ using std::string;
 
 class FileSystemParser {
 public:
-    FileSystemParser(FileSystemBuilder * builder): _builder(builder);
+    FileSystemParser(FileSystemBuilder * builder): _builder(builder) {};
 
-    Folder * getRoot() const;
+    Folder * getRoot() const {};
 
-    void parse();
+    void parse() {};
 
-    void setPath(string path);
+    void setPath(string path) {};
+private:
+    FileSystemBuilder * _builder;
 };
