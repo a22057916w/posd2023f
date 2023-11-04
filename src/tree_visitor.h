@@ -6,8 +6,10 @@
 #include "file.h"
 
 #include <string>
+#include <vector>
 
 using std::string;
+usgin std::vector;
 
 class TreeVisitor: public Visitor {
 public:
@@ -46,17 +48,29 @@ public:
         }
     }
 
-    void traversByName(Node * folder, string prefix) {
+    void traversByName(Folder * folder, string prefix) {
+        vector<Node *> entries;
+
         Iterator * it = folder->createIterator(_orderBy);
         for(it->first(); !it->isDone(); it->next()) {
+            entries.push_back(it->currentItem());
+        }
 
+        for(int i = 0; i < entries.size(); i++) {
+            Node * entry = entries[i];
+            vector<string> pointers = i == entries.size() - 1 ? _final_pointers : _inner_pointers;
+
+            _tree += prefix + pointers[0] + entry->name() + "\n";
+
+            if(dynamic_cast<Folder *>(entry))
+                traversByName(dynamic_cast<Folder *>(entry), pointers[1]);
         }
     }
 
     string getTree() { return _tree; }
 private:
     string _tree = "";
-    int _currLevel;
-    int _prevLevel;
+    vector<string> _inner_pointers = {"├── ", "│   "};
+    vector<string> _final_pointers = {"└── ", "    "};
     OrderBy _orderBy;
 };
