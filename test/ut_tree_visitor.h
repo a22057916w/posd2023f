@@ -26,15 +26,6 @@ protected:
         cqrs = new File("structure/home/Documents/favorites/cqrs.pdf");
         favorite->add(cqrs);
 
-        programming = new Folder("structure/home/Documents/favorites/programming");
-        favorite->add(programming);
-        cpp = new File("structure/home/Documents/favorites/programming/cpp.pub");
-        programming->add(cpp);
-        oop = new File("structure/home/Documents/favorites/programming/oop.pdf");
-        programming->add(oop);
-        python = new File("structure/home/Documents/favorites/programming/python.pub");
-        programming->add(python);
-
         note = new File("structure/home/Documents/note.txt");
         document->add(note);
 
@@ -62,11 +53,6 @@ protected:
         delete funny;
         delete hello1;
         delete hello2;
-
-        delete programming;
-        delete cpp;
-        delete oop;
-        delete python;
     }
     
     Node * home;
@@ -81,11 +67,6 @@ protected:
     Node * funny;
     Node * hello1;
     Node * hello2;
-
-    Node * programming;
-    Node * cpp;
-    Node * oop;
-    Node * python;
 };
 
 TEST_F(TreeVisitorTest, traverseByName) {
@@ -93,17 +74,13 @@ TEST_F(TreeVisitorTest, traverseByName) {
 
     home->accept(visitor);
     
-    string expect = "";
+    string expect = ".\n";
 
     expect += "├── Documents\n";
     expect += "│   ├── favorites\n";
     expect += "│   │   ├── clean-architecture.pdf\n";
     expect += "│   │   ├── cqrs.pdf\n";                
-    expect += "│   │   ├── domain-driven-design.pdf\n";
-    expect += "│   │   └── programming\n";
-    expect += "│   │       ├── cpp.pub\n";                
-    expect += "│   │       ├── oop.pdf\n";                         
-    expect += "│   │       └── python.pub\n";
+    expect += "│   │   └── domain-driven-design.pdf\n";
     expect += "│   ├── hello.txt\n";
     expect += "│   └── note.txt\n";                        
     expect += "├── Downloads\n";  

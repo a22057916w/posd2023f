@@ -44,7 +44,7 @@ public:
 
     string getTree() { return _tree; }
 private:
-    string _tree = "";
+    string _tree = ".\n";
     vector<string> _inner_pointers = {"├── ", "│   "};
     vector<string> _final_pointers = {"└── ", "    "};
     OrderBy _orderBy;
