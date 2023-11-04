@@ -9,46 +9,21 @@
 #include <vector>
 
 using std::string;
-usgin std::vector;
+using std::vector;
 
 class TreeVisitor: public Visitor {
 public:
-    TreeVisitor(OrderBy orderBy): _orderBy(orderBy) {
-        _currLevel = -1;
-        _prevLevel = -1;
-        _tree = "";
-    }
+    TreeVisitor(OrderBy orderBy): _orderBy(orderBy) {}
 
     void visitFile(File * file) {
-        _tree += file->name();
+        _tree += "└── " + file->name();
     }
 
     void visitFolder(Folder * folder) {
-        if(_orderBy == OrderBy::Name) {
-            _currLevel++;
-            _prevLevel++;
-
-            Iterator * it = folder->createIterator(_orderBy);
-            for(it->first(); !it->isDone(); it->next()) {
-                if(it->next() == it->isDone())
-                    _prevLevel--;
-
-                if(_currLevel > 0) {
-                    _tree += "│";
-                    for(int i = 0; i < _currLevel; i++)
-                        _tree += "|   "; 
-                }
-                _tree += "├── ";
-                if(dynamic_cast<Folder *>(it->currentItem()))
-                    _tree += it->currentItem()->name();
-                    
-                it->currentItem()->accept(this);
-                _tree += "\n";
-            }
-        }
+        traverseByName(folder, "");
     }
 
-    void traversByName(Folder * folder, string prefix) {
+    void traverseByName(Folder * folder, string prefix) {
         vector<Node *> entries;
 
         Iterator * it = folder->createIterator(_orderBy);
@@ -56,14 +31,14 @@ public:
             entries.push_back(it->currentItem());
         }
 
-        for(int i = 0; i < entries.size(); i++) {
+        for(size_t i = 0; i < entries.size(); i++) {
             Node * entry = entries[i];
             vector<string> pointers = i == entries.size() - 1 ? _final_pointers : _inner_pointers;
 
             _tree += prefix + pointers[0] + entry->name() + "\n";
 
             if(dynamic_cast<Folder *>(entry))
-                traversByName(dynamic_cast<Folder *>(entry), pointers[1]);
+                traverseByName(dynamic_cast<Folder *>(entry), prefix + pointers[1]);
         }
     }
 
