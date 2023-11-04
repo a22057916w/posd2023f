@@ -114,11 +114,6 @@ public:
         visitor->visitFolder(this);
     }
 
-    // opration overloading for compare folder and files names in alphabetically
-    // bool operator<(const Node * node) const {
-    //     return strcmp(this->name().c_str(), node->name().c_str()) < 0;
-    // }
-
     Iterator * createIterator() override {
         return new FolderIterator(this, _operationCount);
     }
