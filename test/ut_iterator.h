@@ -3,6 +3,7 @@
 #include "../src/file.h"
 #include "../src/iterator.h"
 #include "../src/dfs_iterator.h"
+#include "../src/order_by.h"
 
 class IteratorTest: public ::testing::Test {
 protected:
@@ -162,3 +163,46 @@ TEST_F(IteratorTest, BFS) {
     bfsIt->next();
     ASSERT_TRUE(bfsIt->isDone());
 }
+
+
+TEST_F(IteratorTest, OrderByNormal) {
+    Iterator * it = home->createIterator(OrderBy::Normal);
+
+    it->first();
+    ASSERT_FALSE(it->isDone());
+    
+    ASSERT_EQ("my_profile", it->currentItem()->name());
+    
+    it->next();
+    ASSERT_EQ("Documents", it->currentItem()->name());
+
+    it->next();
+    ASSERT_EQ("Downloads", it->currentItem()->name());
+
+    it->next();
+    ASSERT_TRUE(it->isDone());
+
+    delete it;
+}
+
+
+TEST_F(IteratorTest, OrderByName) {
+    Iterator * it = home->createIterator(OrderBy::Name);
+
+    it->first();
+    EXPECT_FALSE(it->isDone());
+
+    EXPECT_EQ("Documents", it->currentItem()->name());
+
+    it->next();
+    EXPECT_EQ("Downloads", it->currentItem()->name());
+
+    it->next();
+    EXPECT_EQ("my_profile", it->currentItem()->name());
+
+    it->next();
+    EXPECT_TRUE(it->isDone());
+
+    delete it;
+}
+
