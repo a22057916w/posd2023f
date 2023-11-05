@@ -30,8 +30,10 @@ public:
         struct stat fileInfo;
         const char *c = path.c_str();
         if(lstat(c, &fileInfo) == 0){
-            if(S_ISDIR(fileInfo.st_mode))
+            if(S_ISDIR(fileInfo.st_mode)) {
+                _type = "folder";
                 return;
+            }
         }
         throw "No Folder exists";
     }
@@ -221,7 +223,7 @@ public:
             // sort the list alphabetically
             _nodes.sort([](const Node * n1, const Node * n2) {
                 // struct stat fileInfo;
-                if(n1->type() == "FOLDER" && n2->type() == "FILE")
+                if(n1->type() == "Folder" && n2->type() == "File")
                     return true;
                 else
                     return n1->name() < n2->name();

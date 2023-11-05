@@ -16,7 +16,7 @@ private:
 protected:
 
     Node(string path): _path(path) {}
-
+    string _type;
 public:
     virtual ~Node() {}
 
@@ -39,6 +39,10 @@ public:
     
     string path() const {
         return _path;
+    }
+
+    string type() const {
+        return _type;
     }
     
     virtual void add(Node * node) {

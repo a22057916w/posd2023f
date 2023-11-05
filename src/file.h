@@ -9,8 +9,10 @@ public:
         struct stat fileInfo;
         const char *c = path.c_str();
         if(lstat(c, &fileInfo) == 0){
-            if(S_ISREG(fileInfo.st_mode))
+            if(S_ISREG(fileInfo.st_mode)) {
+                _type = "file";
                 return;
+            }
         }
         throw "No File exists";
     }
