@@ -14,6 +14,8 @@ using std::vector;
 class TreeVisitor: public Visitor {
 public:
     TreeVisitor(OrderBy orderBy): _orderBy(orderBy) {}
+    
+    virtual ~TreeVisitor() {}
 
     void visitFile(File * file) {
         _tree += "└── " + file->name();

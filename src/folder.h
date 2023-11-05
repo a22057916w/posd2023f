@@ -31,7 +31,7 @@ public:
         const char *c = path.c_str();
         if(lstat(c, &fileInfo) == 0){
             if(S_ISDIR(fileInfo.st_mode)) {
-                _type = "folder";
+                _type = "Folder";
                 return;
             }
         }
@@ -222,9 +222,11 @@ public:
             
             // sort the list alphabetically
             _nodes.sort([](const Node * n1, const Node * n2) {
-                // struct stat fileInfo;
+                
                 if(n1->type() == "Folder" && n2->type() == "File")
                     return true;
+                else if(n1->type() == "File" && n2->type() == "Folder")
+                    return false;
                 else
                     return n1->name() < n2->name();
             });  

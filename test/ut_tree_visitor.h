@@ -38,6 +38,9 @@ protected:
         funny = new File("structure/home/Downloads/funny.png");
         download->add(funny);
 
+        apple = new File("structure/home/Documents/apple.pdf");
+        document->add(apple);
+
     }
 
     void TearDown() {
@@ -53,6 +56,8 @@ protected:
         delete funny;
         delete hello1;
         delete hello2;
+
+        delete apple;
     }
     
     Node * home;
@@ -67,6 +72,8 @@ protected:
     Node * funny;
     Node * hello1;
     Node * hello2;
+
+    Node * apple;
 };
 
 TEST_F(TreeVisitorTest, traverseByName) {
@@ -77,6 +84,7 @@ TEST_F(TreeVisitorTest, traverseByName) {
     string expect = ".\n";
 
     expect += "├── Documents\n";
+    expect += "│   ├── apple.pdf\n";
     expect += "│   ├── favorites\n";
     expect += "│   │   ├── clean-architecture.pdf\n";
     expect += "│   │   ├── cqrs.pdf\n";                
@@ -89,5 +97,31 @@ TEST_F(TreeVisitorTest, traverseByName) {
     expect += "└── my_profile\n";                 
                      
     EXPECT_EQ(expect, visitor->getTree());
+
+    delete visitor;
 }
 
+TEST_F(TreeVisitorTest, traversByNameFolderFisrt) {
+    TreeVisitor * visitor = new TreeVisitor(OrderBy::NameWithFolderFirst);
+
+    home->accept(visitor);
+
+    string expect = ".\n";
+
+    expect += "├── Documents\n";
+    expect += "│   ├── favorites\n";
+    expect += "│   │   ├── clean-architecture.pdf\n";
+    expect += "│   │   ├── cqrs.pdf\n";                
+    expect += "│   │   └── domain-driven-design.pdf\n";
+    expect += "│   ├── apple.pdf\n";
+    expect += "│   ├── hello.txt\n";
+    expect += "│   └── note.txt\n";                        
+    expect += "├── Downloads\n";  
+    expect += "│   └── funny.png\n";                 
+    expect += "├── hello.txt\n";                 
+    expect += "└── my_profile\n";
+
+    EXPECT_EQ(expect, visitor->getTree());
+
+    delete visitor;
+}

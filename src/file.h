@@ -10,7 +10,7 @@ public:
         const char *c = path.c_str();
         if(lstat(c, &fileInfo) == 0){
             if(S_ISREG(fileInfo.st_mode)) {
-                _type = "file";
+                _type = "File";
                 return;
             }
         }
