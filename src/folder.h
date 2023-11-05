@@ -31,6 +31,7 @@ public:
         const char *c = path.c_str();
         if(lstat(c, &fileInfo) == 0){
             if(S_ISDIR(fileInfo.st_mode)) {
+                _extension = "";
                 _type = "Folder";
                 return;
             }
@@ -220,9 +221,8 @@ public:
             // copy _host->_nodes to this->_nodes
             std::copy(_host->_nodes.begin(), _host->_nodes.end(), std::back_inserter(_nodes));
             
-            // sort the list alphabetically
+            // sort the list with folder first
             _nodes.sort([](const Node * n1, const Node * n2) {
-                
                 if(n1->type() == "Folder" && n2->type() == "File")
                     return true;
                 else if(n1->type() == "File" && n2->type() == "Folder")
@@ -271,9 +271,29 @@ public:
             // copy _host->_nodes to this->_nodes
             std::copy(_host->_nodes.begin(), _host->_nodes.end(), std::back_inserter(_nodes));
             
-            // sort the list alphabetically
+            // sort the list by node kinds
             _nodes.sort([](const Node * n1, const Node * n2) {
-                return n1->name() < n2->name();
+                // file with no extension sort first
+                if(n1->type() == "File" && n1->extension() == "")
+                    return true;
+                if(n2->type() == "File" && n2->extension() == "")
+                    return false;
+                
+                // folder sort before file
+                if(n1->type() == "Folder" && n2->type() == "File")
+                    return true;
+                else if(n1->type() == "File" && n2->type() == "Folder")
+                    return false;
+                // sort file by file extension
+                else if(n1->type() == "File" && n2->type() == "File") {
+                    // compare extension, if equal compare name
+                    if(n1->extension() != n2->extension())
+                        return n1->extension() < n2->extension();
+                    else
+                        return n1->name() < n2->name();
+                }
+                else
+                    return n1->name() < n2->name();
             });  
         };
         

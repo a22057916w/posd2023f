@@ -41,6 +41,8 @@ protected:
         apple = new File("structure/home/Documents/apple.pdf");
         document->add(apple);
 
+        whisky = new File("structure/home/Documents/whisky.pdf");
+        document->add(whisky);
     }
 
     void TearDown() {
@@ -58,6 +60,7 @@ protected:
         delete hello2;
 
         delete apple;
+        delete whisky;
     }
     
     Node * home;
@@ -74,6 +77,7 @@ protected:
     Node * hello2;
 
     Node * apple;
+    Node * whisky;
 };
 
 TEST_F(TreeVisitorTest, traverseByName) {
@@ -90,7 +94,8 @@ TEST_F(TreeVisitorTest, traverseByName) {
     expect += "│   │   ├── cqrs.pdf\n";                
     expect += "│   │   └── domain-driven-design.pdf\n";
     expect += "│   ├── hello.txt\n";
-    expect += "│   └── note.txt\n";                        
+    expect += "│   ├── note.txt\n";
+    expect += "│   └── whisky.pdf\n";                              
     expect += "├── Downloads\n";  
     expect += "│   └── funny.png\n";                 
     expect += "├── hello.txt\n";                 
@@ -115,11 +120,39 @@ TEST_F(TreeVisitorTest, traversByNameFolderFisrt) {
     expect += "│   │   └── domain-driven-design.pdf\n";
     expect += "│   ├── apple.pdf\n";
     expect += "│   ├── hello.txt\n";
-    expect += "│   └── note.txt\n";                        
+    expect += "│   ├── note.txt\n";
+    expect += "│   └── whisky.pdf\n";                         
     expect += "├── Downloads\n";  
     expect += "│   └── funny.png\n";                 
     expect += "├── hello.txt\n";                 
     expect += "└── my_profile\n";
+
+    EXPECT_EQ(expect, visitor->getTree());
+
+    delete visitor;
+}
+
+TEST_F(TreeVisitorTest, tarversByKind) {
+    TreeVisitor * visitor = new TreeVisitor(OrderBy::Kind);
+
+    home->accept(visitor);
+
+    string expect = ".\n";
+
+    expect += "├── my_profile\n";
+    expect += "├── Documents\n";
+    expect += "│   ├── favorites\n";
+    expect += "│   │   ├── clean-architecture.pdf\n";
+    expect += "│   │   ├── cqrs.pdf\n";                
+    expect += "│   │   └── domain-driven-design.pdf\n";
+    expect += "│   ├── apple.pdf\n";
+    expect += "│   ├── whisky.pdf\n";    
+    expect += "│   ├── hello.txt\n";
+    expect += "│   └── note.txt\n";                   
+    expect += "├── Downloads\n";  
+    expect += "│   └── funny.png\n";                 
+    expect += "└── hello.txt\n";                 
+    
 
     EXPECT_EQ(expect, visitor->getTree());
 

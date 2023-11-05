@@ -10,7 +10,16 @@ public:
         const char *c = path.c_str();
         if(lstat(c, &fileInfo) == 0){
             if(S_ISREG(fileInfo.st_mode)) {
+                // initiate _extension
+                size_t lastDot = path.find_first_of(".");
+                if(lastDot != string::npos)
+                    _extension = path.substr(lastDot + 1);
+                else
+                    _extension = "";
+                
+                // assign node type
                 _type = "File";
+                
                 return;
             }
         }
