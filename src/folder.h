@@ -123,6 +123,12 @@ public:
             return new FolderIterator(this, _operationCount);
         else if(category == OrderBy::Name)
             return new OrderByNameIterator(this, _operationCount);
+        else if(category == OrderBy::NameWithFolderFirst)
+            return new OrderByNameWithFolderFirstIterator(this, _operationCount);
+        else if(category == OrderBy::Kind)
+            return new OrderByKindIterator(this, _operationCount);
+        else
+            return new NullIterator();
     }
 
     class FolderIterator : public Iterator {
@@ -172,6 +178,7 @@ public:
                 return n1->name() < n2->name();
             });  
         };
+
         ~OrderByNameIterator() {}
 
          void first() {
@@ -206,10 +213,96 @@ public:
     };
 
     class OrderByNameWithFolderFirstIterator: public Iterator {
-    
+    public:
+        OrderByNameWithFolderFirstIterator(Folder * composite, int operationCount): _host(composite), _operationCount(operationCount) {
+            // copy _host->_nodes to this->_nodes
+            std::copy(_host->_nodes.begin(), _host->_nodes.end(), std::back_inserter(_nodes));
+            
+            // sort the list alphabetically
+            _nodes.sort([](const Node * n1, const Node * n2) {
+                // struct stat fileInfo;
+                if(n1->type() == "FOLDER" && n2->type() == "FILE")
+                    return true;
+                else
+                    return n1->name() < n2->name();
+            });  
+        };
+
+        ~OrderByNameWithFolderFirstIterator() {}
+
+         void first() {
+            checkAvailable();
+            _current = _nodes.begin();
+        }
+
+        Node * currentItem() const {
+            return *_current;
+        }
+
+        void next() {
+            checkAvailable();
+            _current++;
+        }
+
+        bool isDone() const {
+            return _current == _nodes.end();
+        }
+
+    private:
+        Folder * const _host;
+        std::list<Node *> _nodes;
+        std::list<Node *>::iterator _current;
+        int _operationCount;
+
+        void checkAvailable() const {
+            if(_host->_operationCount != _operationCount) {
+                throw "Iterator Not Avaliable";
+            }
+        }
     };
 
     class OrderByKindIterator: public Iterator {
-    
+    public:
+        OrderByKindIterator(Folder * composite, int operationCount): _host(composite), _operationCount(operationCount) {
+            // copy _host->_nodes to this->_nodes
+            std::copy(_host->_nodes.begin(), _host->_nodes.end(), std::back_inserter(_nodes));
+            
+            // sort the list alphabetically
+            _nodes.sort([](const Node * n1, const Node * n2) {
+                return n1->name() < n2->name();
+            });  
+        };
+        
+        ~OrderByKindIterator() {}
+
+         void first() {
+            checkAvailable();
+            _current = _nodes.begin();
+        }
+
+        Node * currentItem() const {
+            return *_current;
+        }
+
+        void next() {
+            checkAvailable();
+            _current++;
+        }
+
+        bool isDone() const {
+            return _current == _nodes.end();
+        }
+
+    private:
+        Folder * const _host;
+        std::list<Node *> _nodes;
+        std::list<Node *>::iterator _current;
+        int _operationCount;
+
+        void checkAvailable() const {
+            if(_host->_operationCount != _operationCount) {
+                throw "Iterator Not Avaliable";
+            }
+        }
     };
 };
