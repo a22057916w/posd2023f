@@ -8,7 +8,7 @@ using std::string;
 
 class FileSystemBuilder {
 public:
-    Folder * getRoot() const ;
+    Folder * getRoot() const {};
 
     void buildFile(string path) {};
 
