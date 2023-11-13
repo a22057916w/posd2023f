@@ -30,5 +30,8 @@
 * Creational Pattern
 * Object-Composite
 
+## Object-Relation Mapping (ORM)
+* Database handling
+
 ## Template Method
 
