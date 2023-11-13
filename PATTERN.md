@@ -35,7 +35,9 @@
 
 <br>
 <br>
-[.](https://github.com/a22057916w/posd2023f/blob/main/.meta/object_relation_mapper.jpg)
+<p align="center">
+ <src=".meta/object_relation_mapper.jpg", width=300, heigh=300 />
+</p>
 
 ## Template Method
 
