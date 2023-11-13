@@ -35,7 +35,7 @@
 
 <br>
 <br>
-[](https://github.com/a22057916w/posd2023f/blob/main/.meta/object_relation_mapper.jpg)
+[.](https://github.com/a22057916w/posd2023f/blob/main/.meta/object_relation_mapper.jpg)
 
 ## Template Method
 
