@@ -34,9 +34,8 @@
 * Database handling
 
 <br>
-<br>
-<p align="center">
- <img src=".meta/object_relation_mapper.jpg", width=300, heigh=300 />
+<p align="left">
+ <img src=".meta/object_relation_mapper.jpg", width=400, heigh=400 />
 </p>
 
 ## Template Method
