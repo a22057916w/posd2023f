@@ -32,7 +32,7 @@
 
 ## Object-Relation Mapping (ORM)
 * Database handling
-
+* DataMapper
 <br>
 <p align="left">
  <img src=".meta/object_relation_mapper.jpg", width=400, heigh=400 />
