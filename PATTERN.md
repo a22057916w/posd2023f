@@ -36,7 +36,7 @@
 <br>
 <br>
 <p align="center">
- <src=".meta/object_relation_mapper.jpg", width=300, heigh=300 />
+ <img src=".meta/object_relation_mapper.jpg", width=300, heigh=300 />
 </p>
 
 ## Template Method
