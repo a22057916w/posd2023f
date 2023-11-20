@@ -38,5 +38,9 @@
  <img src=".meta/object_relation_mapper.jpg", width=400, heigh=400 />
 </p>
 
+## Singleton
+* Ensure a class only has one instance
+* Global variable (static member in class)
+
 ## Template Method
 
