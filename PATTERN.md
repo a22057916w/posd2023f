@@ -39,7 +39,7 @@
 </p>
 
 ## Singleton
-* Ensure a class only has one instance
+* Ensure a class only has one instance (i.e. DataMapper)
 * Global variable (static member in class)
 
 ## Template Method
