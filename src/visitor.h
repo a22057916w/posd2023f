@@ -1,10 +1,11 @@
 #pragma once
 
-class File;
-class Folder;
+class JsonObject;
+class StringValue;
 
-class Visitor {
+class JsonVisitor {
 public:
-    virtual void visitFile(File * file) = 0;
-    virtual void visitFolder(Folder * folder) = 0;
+    virtual ~JsonVisitor() {};
+    virtual void visitJsonObject(JsonObject * obj) = 0;
+    virtual void visitStringValue(StringValue * val) = 0;
 };
