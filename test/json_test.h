@@ -8,7 +8,6 @@ TEST(JSonSuite, OneKeyStringValue) {
     ASSERT_EQ(v1, jo->getValue("key1"));
     ASSERT_EQ("{\n\"key1\":\"value1\"\n}", jo->toString());
 
-    delete v1;
     delete jo;
 }
 
@@ -22,8 +21,6 @@ TEST(JSonSuite, TwoKeyStringValue) {
     ASSERT_EQ("\"value2\"", jo->getValue("key2")->toString());
     ASSERT_EQ("{\n\"key1\":\"value1\",\n\"key2\":\"value2\"\n}", jo->toString());
 
-    delete v1;
-    delete v2;
     delete jo;
 }
 
@@ -39,8 +36,5 @@ TEST(JSonSuite, Composite) {
     ASSERT_EQ(jo, j_composite->getValue("keyc"));
     ASSERT_EQ("{\n\"keyc\":{\n\"key1\":\"value1\",\n\"key2\":\"value2\"\n}\n}", j_composite->toString());
 
-    delete v1;
-    delete v2;
-    delete jo;
     delete j_composite;
 }

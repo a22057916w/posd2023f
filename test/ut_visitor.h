@@ -26,7 +26,6 @@ TEST(VisitorSuite, OneKeyStringValue) {
     EXPECT_EQ(expect, visitor->getResult());
 
     delete visitor;
-    delete desc;
     delete jo;
 }
 
@@ -54,9 +53,6 @@ TEST(VisitorSuite, MultipleKeyStringValues) {
     EXPECT_EQ(expect, visitor->getResult());
 
     delete visitor;
-    delete desc;
-    delete id;
-    delete isDeleted;
     delete jo;
 }
 
@@ -100,12 +96,5 @@ TEST(VisitorSuite, Composite) {
     EXPECT_EQ(expect, visitor->getResult());
 
     delete visitor;
-    delete author1;
-    delete author2;
-    delete name1;
-    delete name2;
-    delete clean;
-    delete design;
-    delete book;
     delete root;
 }
