@@ -11,6 +11,12 @@ using std::string;
 
 class JsonObject : public Value {
 public:
+    ~JsonObject() {
+        for(auto & item : _map)
+            delete item.second;
+        _map.clear();
+    }
+
     string toString() override {
         _result += "{";
 

@@ -45,8 +45,6 @@ TEST(IteratorSuite, JsonObject) {
     EXPECT_TRUE(it->isDone());
 
     delete it;
-    delete v1;
-    delete v2;
     delete jo;
 }
 
@@ -71,8 +69,5 @@ TEST(IteratorSuite, Composite) {
     EXPECT_TRUE(it->isDone());
 
     delete it;
-    delete v1;
-    delete v2;
-    delete jo;
     delete j_composite;
 }
