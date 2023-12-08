@@ -1,11 +1,10 @@
 #pragma once
 
-class JsonObject;
-class StringValue;
+class Triangle;
+class Compound;
 
-class JsonVisitor {
+class Visitor {
 public:
-    virtual ~JsonVisitor() {};
-    virtual void visitJsonObject(JsonObject * obj) = 0;
-    virtual void visitStringValue(StringValue * val) = 0;
+    virtual void visitTriangle(Triangle * triangle) = 0;
+    virtual void visitCompound(Compound * compound) = 0;
 };
