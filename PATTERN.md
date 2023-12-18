@@ -63,7 +63,12 @@
 <p align="left">
  <img src=".meta/unit_of_work.jpg", width=600, height=400 />
 </p>
+
+## Abstract Factory
+
 ## Adapter
+
 ## Proxy
+
 ## Domain Driven Pattern
-* Tatically Pattern
+* Tactically Pattern
