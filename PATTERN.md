@@ -82,6 +82,6 @@
 <br><br>
 
 <p align="left">
- <img src=".meta/cleanArchitecture.jpg", width=400, heigh=400 />
+ <img src=".meta/CleanArchitecture.jpg", width=400, heigh=400 />
 </p>
 
