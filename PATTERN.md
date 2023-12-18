@@ -70,5 +70,8 @@
 
 ## Proxy
 
-## Domain Driven Pattern
+## Domain-Driven Pattern
+* i.e. Bussines Domain. (Shapes)
+* 希望幫我的bussines建立model.
+* Isolated domain with **Layered Architecture**. (i.e. UI layer, Domain layer, Infrastructure layer )
 * Tactically Pattern
