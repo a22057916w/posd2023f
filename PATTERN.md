@@ -1,3 +1,9 @@
+# Principle
+* OCP
+* DIP
+* LSP
+* GOF (book)
+
 # Category
 1. Object-Composite vs Class-Inheritance
 * Object-Composite: Dynamic (init at run-time)
