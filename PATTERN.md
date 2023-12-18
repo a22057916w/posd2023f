@@ -1,7 +1,4 @@
 # Principle
-* OCP
-* DIP
-* LSP
 * GOF (book)
 * SOLID
 
