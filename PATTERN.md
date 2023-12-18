@@ -77,11 +77,11 @@
 * Tactically Pattern
 
 <p align="left">
- <img src=".meta/domain-driven-design-tactical-design.jpg", width=400, heigh=400 />
+ <img src=".meta/domain-driven-design-tactical-design.jpg", width=500, heigh=500 />
 </p>
 <br><br>
 
 <p align="left">
- <img src=".meta/CleanArchitecture.jpg", width=400, heigh=400 />
+ <img src=".meta/CleanArchitecture.jpg", width=500, heigh=500 />
 </p>
 
