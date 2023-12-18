@@ -75,3 +75,7 @@
 * 希望幫我的bussines建立model.
 * Isolated domain with **Layered Architecture**. (i.e. UI layer, Domain layer, Infrastructure layer )
 * Tactically Pattern
+
+<p align="left">
+ <img src=".meta/domain-driven-design-tactical-design.jpg", width=400, heigh=400 />
+</p>
