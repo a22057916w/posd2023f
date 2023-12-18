@@ -3,6 +3,7 @@
 * DIP
 * LSP
 * GOF (book)
+* SOLID
 
 # Category
 1. Object-Composite vs Class-Inheritance
@@ -62,6 +63,7 @@
 <p align="left">
  <img src=".meta/unit_of_work.jpg", width=600, height=400 />
 </p>
-
+## Adapter
+## Proxy
 ## Domain Driven Pattern
 * Tatically Pattern
