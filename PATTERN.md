@@ -43,7 +43,7 @@
 * Global variable (static member in class)
 
 ## Template Method
-* Base class 有一套固定的演算法, 演算法裡的某些小步驟(method or function)允許derived class去實作.
+* Base class 有一套固定的演算法, 演算法裡的某些小步驟(primetive function or hook operation)允許derived class去實作.
 * Factoring the common behaviors.
 * Inverted Control - parent calls child's operations.
 <br>
