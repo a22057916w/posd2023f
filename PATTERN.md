@@ -1,3 +1,7 @@
+# Principle
+* GOF (book)
+* SOLID
+
 # Category
 1. Object-Composite vs Class-Inheritance
 * Object-Composite: Dynamic (init at run-time)
@@ -43,7 +47,7 @@
 * Global variable (static member in class)
 
 ## Template Method
-* Base class 有一套固定的演算法, 演算法裡的某些小步驟(method or function)允許derived class去實作.
+* Base class 有一套固定的演算法, 演算法裡的某些小步驟(primetive function or hook operation)允許derived class去實作.
 * Factoring the common behaviors.
 * Inverted Control - parent calls child's operations.
 <br>
@@ -56,3 +60,25 @@
 <p align="left">
  <img src=".meta/unit_of_work.jpg", width=600, height=400 />
 </p>
+
+## Abstract Factory
+
+## Adapter
+
+## Proxy
+
+## Domain-Driven Pattern
+* i.e. Bussines Domain. (Shapes)
+* 希望幫我的bussines建立model.
+* Isolated domain with **Layered Architecture**. (i.e. UI layer, Domain layer, Infrastructure layer )
+* Tactically Pattern
+
+<p align="left">
+ <img src=".meta/domain-driven-design-tactical-design.jpg", width=500, heigh=500 />
+</p>
+<br><br>
+
+<p align="left">
+ <img src=".meta/CleanArchitecture.jpg", width=500, heigh=500 />
+</p>
+
