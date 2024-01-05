@@ -27,6 +27,5 @@ private:
   Scanner * _scannerl
 };
 ```
-<br><br>
   (a) Argue that the constructor in line 3 - line 6 is a bad design by identifying the SOLID principle it violates. <br><br>
   (b) Suggest a fix to improve it, You can change the signature of the constructor in your design. Argue that your fix is a better design.
