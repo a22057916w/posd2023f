@@ -10,4 +10,23 @@
   (a) Early in our course this semester, Composite (163) is applied for relating the classes **Shape**, **Circle**, **CompositeShape**, etc. With regard to these classes, what kind of change are they strategically closed against? Under what kind of change does the strategic closure fail? What is the consequence? <br><br>
   (b) Among the 23 patterns in the textbook, which pattern can be applied to fix the failure of the strategic closure in (a)? Briefly explain how this is done.
 
-### 4.
+### 4. <br> In the **Shape** example in class, to read shape information stored on file and create corresponding shapes and their compositions in memory, we use three collaborating classes: **Parser**, **Scanner**, and **ShapeBuilder**. We wrote the constructor as in line 3 - line 8 shown below.
+```
+class Parser {
+public:
+  Parser(std::string input)" _input(input) {
+    _builder = ShapeBuilder::instance();
+    _scanner = new Scanner(_input);
+  }
+  void parse() { ... }
+  std::vector<Shape*> getResult() { return _result; }
+private:
+  std::string _input;
+  std::vector<Shape*> _result;
+  ShapeBuilder * _builder;
+  Scanner * _scannerl
+};
+```
+<br><br>
+  (a) Argue that the constructor in line 3 - line 6 is a bad design by identifying the SOLID principle it violates. <br><br>
+  (b) Suggest a fix to improve it, You can change the signature of the constructor in your design. Argue that your fix is a better design.
