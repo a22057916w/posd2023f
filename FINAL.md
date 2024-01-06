@@ -28,14 +28,14 @@
   is passed to the derived **sqrt()**, it will throw an unexpected error. <br>
   
   (b) Write a unit test for checking compliance of LSP for **Base** and **Derived**. <br>
-  '''
+  ```
   TEST(DerivedSqrt, LSP) {
     for(double i = 0; i < DBL_MAX / 2; i++) {
       Base * od1 = new Derived(i);
       EXPECT_NO_THROW(od->sqrt());
       delete od1;
   }
-  '''
+  ```
   <br><br>
   
 #### 3. <br> In the *Open-Closed Principle*, it is said that "Since closure cannot be complete, it must be strategic".
