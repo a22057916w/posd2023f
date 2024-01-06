@@ -28,6 +28,12 @@
 
 #### 3. <br> In the *Open-Closed Principle*, it is said that "Since closure cannot be complete, it must be strategic".
   (a) Early in our course this semester, Composite (163) is applied for relating the classes **Shape**, **Circle**, **CompositeShape**, etc. With regard to these classes, what kind of change are they strategically closed against? Under what kind of change does the strategic closure fail? What is the consequence? <br><br>
+  
+  New types of shapes (e.g., new classes derived from Shape) can be added without affecting existing code. The pattern is closed against     
+  **changes in the component classes**. <br>
+  If we were to add a new module that is not related to the composite struct, which might involve changing the **Composite Structure**. It is   
+  a failure against **changes in structure**. <br>
+  
   (b) Among the 23 patterns in the textbook, which pattern can be applied to fix the failure of the strategic closure in (a)? Briefly explain how this is done.
 
 #### 4. <br> In the **Shape** example in class, to read shape information stored on file and create corresponding shapes and their compositions in memory, we use three collaborating classes: **Parser**, **Scanner**, and **ShapeBuilder**. We wrote the constructor as in line 3 - line 6 shown below.
