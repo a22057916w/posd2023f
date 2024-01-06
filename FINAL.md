@@ -90,6 +90,7 @@ private:
   };
   ```
   <br>
+  
   Let the **Parser** depend on the interface of the low-level classes, which are **AbstrctBuilder** and **AbstrctScanner**. With the dependency   inversion, the **Parser** can now take any kind of **Builder** and **Scanner** without changing its policy(code). <br><br>
 
 #### 5. <br> Your team is developing a new application for your company. The new application must use a completed existing system maintained by the other team. Luckily, you only need a service from the existing system, which involves several objects collaborating to achieve. The other team has been ordered to help your team by adding any object to the existing system for you. Suppose you were to ask the other team to help by adding a new object according to one of the 23 patterns of the textbook, what pattern would you pick? Explain why.
