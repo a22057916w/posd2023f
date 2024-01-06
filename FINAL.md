@@ -27,7 +27,7 @@
   (b) Write a unit test for checking compliance of LSP for **Base** and **Derived**.
 
 #### 3. <br> In the *Open-Closed Principle*, it is said that "Since closure cannot be complete, it must be strategic".
-  (a) Early in our course this semester, Composite (163) is applied for relating the classes **Shape**, **Circle**, **CompositeShape**, etc. With regard to these classes, what kind of change are they strategically closed against? Under what kind of change does the strategic closure fail? What is the consequence? <br><br>
+  (a) Early in our course this semester, Composite (163) is applied for relating the classes **Shape**, **Circle**, **CompositeShape**, etc. With regard to these classes, what kind of change are they strategically closed against? Under what kind of change does the strategic closure fail? What is the consequence? <br>
   
   New types of shapes (e.g., new classes derived from Shape) can be added without affecting existing code. The pattern is closed against     
   **changes in the component classes**. <br>
