@@ -19,8 +19,7 @@
   ```
   (b) *True or False*: of the two versions of  the Adapter (139) pattern, the class adapter is more flexible than the object adapter. Explain your answer. <br><br>
   *False*, the object adapter is more flexible than the class adapter. <br> 
-  The class adapter uses **multiple inheritance** to adapt the adapted(or interface), while the object adapter uses **object composition**(reference, 
-  pointer) to combine the adapted. If there is a subclass of the adapted, the object adapter will work well with that, while the class adapter will have no access to it. 
+  The class adapter uses **multiple inheritance** to adapt the adapted(or interface), while the object adapter uses **object composition**(reference, pointer) to combine the adapted. If there is a subclass of the adapted, the object adapter will work well with that, while the class adapter will have no access to it. <br><br> 
   
 #### 2. <br> This problem is about the *Liskov Substitution Principle*. Consider a base class **Base** with a data member **r** of the type **double** and a virtual method **sqrt()** for computing the square root of **r**. When called, **sqrt()** checks if **r** is greater than or equal to 0. If so, it performs computation on **r**; if not, it throws an exception. <br> In Johnny's application, his number **r** must be between 3 and 9. Since Johnny still needs the **sqrt()** member function, he writes a class **Derived** which publicly inherits **Base**. He overrides the method **sqrt()** with the following behavior: it checks if **r** is between 3 and 9. If so, it performs computation on **r**; if not, it throws an exception.
   (a) *True or False*: the class **Derived** is compliant with LSP. Explain your answer. <br><br>
@@ -35,9 +34,10 @@
   a failure against **changes in structure**. <br>
   
   (b) Among the 23 patterns in the textbook, which pattern can be applied to fix the failure of the strategic closure in (a)? Briefly explain how this is done. <br>
-
   We can isolate the unrelated module by **Visitor** pattern, the Shape composite needs only to accept the visitor by a single **accept()**
-  method. Therefore, does not compromise the Shape composite structure. <br>
+  method. Therefore, does not compromise the Shape composite structure. <br><br>
+
+  
 #### 4. <br> In the **Shape** example in class, to read shape information stored on file and create corresponding shapes and their compositions in memory, we use three collaborating classes: **Parser**, **Scanner**, and **ShapeBuilder**. We wrote the constructor as in line 3 - line 6 shown below.
 ```
 class Parser {
@@ -59,7 +59,7 @@ private:
   (b) Suggest a fix to improve it, You can change the signature of the constructor in your design. Argue that your fix is a better design.
 
 #### 5. <br> Your team is developing a new application for your company. The new application must use a completed existing system maintained by the other team. Luckily, you only need a service from the existing system, which involves several objects collaborating to achieve. The other team has been ordered to help your team by adding any object to the existing system for you. Suppose you were to ask the other team to help by adding a new object according to one of the 23 patterns of the textbook, what pattern would you pick? Explain why.
-  Apply the **Visitor** pattern. I would have the new object as a visitor class or subclass. Therefore, in my application, I only need to **accept** the new object as a visitor to get the service from the existing system.
+  Apply the **Visitor** pattern. I would have the new object as a visitor class or subclass. Therefore, in my application, I only need to **accept** the new object as a visitor to get the service from the existing system. <br><br>
 
 #### 6. <br> Use one of the **Shape** classes to give an example in which the Proxy (207) pattern is implemented exactly like the Decorator (175) pattern.
   ```
