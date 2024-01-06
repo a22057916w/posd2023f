@@ -1,7 +1,8 @@
 ### 1. <br> This problem is about *composition* and *inheritance*.
   (a) *True or False*: a design pattern of the object scope uses composition but not inheritance. If true, why? If false, give a counter-example. <br>
   &emsp; *False* <br>
-  &emsp;```
+  &emsp;
+  ```
   class Shape {
     virtual void draw() = 0;
   };
