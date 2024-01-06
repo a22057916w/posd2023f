@@ -82,3 +82,4 @@ private:
     Circle * _circle;
   };
   ```
+The **CircleProxy** and **CircleDecorator** both hold a reference to **Circle** and forward the **draw()** operation to **Circle**. If **CircleDecorator** doesn't implement **drawBorder**, the **CircleProxy** is exactly like the **CircleDecorator**. <br>
