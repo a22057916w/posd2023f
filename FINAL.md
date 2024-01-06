@@ -54,4 +54,31 @@ private:
   Apply the **Visitor** pattern. I would have the new object as a visitor class or subclass. Therefore, in my application, I only need to **accept** the new object as a visitor to get the service from the existing system.
 
 #### 6. <br> Use one of the **Shape** classes to give an example in which the Proxy (207) pattern is implemented exactly like the Decorator (175) pattern.
-  <br><br>
+  ```
+  class Circle : public Shape {
+  public:
+    void draw() override {
+      // draw the circle
+    }
+  };
+  class CircleProxy : public Shape {
+  public:
+    void draw() override {
+      _circle->draw();
+    }
+  private:
+    Circle * _circle;
+  };
+  class CircleDecorator : public Shape {
+  public:
+    void draw() override {
+      _circle->draw();
+      drawBorder();
+    }
+    void drawBorder() {
+      // draw border for circle
+    }
+  private:
+    Circle * _circle;
+  };
+  ```
