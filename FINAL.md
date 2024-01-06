@@ -22,7 +22,7 @@
   The class adapter uses **multiple inheritance** to adapt the adapted(or interface), while the object adapter uses **object composition**(reference, pointer) to combine the adapted. If there is a subclass of the adapted, the object adapter will work well with that, while the class adapter will have no access to it. <br><br> 
   
 #### 2. <br> This problem is about the *Liskov Substitution Principle*. Consider a base class **Base** with a data member **r** of the type **double** and a virtual method **sqrt()** for computing the square root of **r**. When called, **sqrt()** checks if **r** is greater than or equal to 0. If so, it performs computation on **r**; if not, it throws an exception. <br> In Johnny's application, his number **r** must be between 3 and 9. Since Johnny still needs the **sqrt()** member function, he writes a class **Derived** which publicly inherits **Base**. He overrides the method **sqrt()** with the following behavior: it checks if **r** is between 3 and 9. If so, it performs computation on **r**; if not, it throws an exception.
-  (a) *True or False*: the class **Derived** is compliant with LSP. Explain your answer. <br>
+  (a) *True or False*: the class **Derived** is compliant with LSP. Explain your answer. <br><br>
   *False*, the class **Derived** is not compliant with LSP. <br>
   The derived precondition(if between 3 and 9) is **stronger** than the base class's, which violet the "Design by Contract". If a Base object 
   is passed to the derived **sqrt()**, it will throw an unexpected error. <br>
