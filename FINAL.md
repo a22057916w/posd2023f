@@ -65,10 +65,13 @@ private:
   std::string _input;
   std::vector<Shape*> _result;
   ShapeBuilder * _builder;
-  Scanner * _scannerl
+  Scanner * _scanner;
 };
 ```
   (a) Argue that the constructor in line 3 - line 6 is a bad design by identifying the SOLID principle it violates. <br><br>
+  It violates the **Dependency Inversion Principle(DIP)**. The **Parser** class depends on the lower-level classes **ShapeBuilder** and 
+  **Scanner**, if there is another build or scanner, the **Parser** policy cannot adopt it and thus, fails to reuse. <br>  
+  
   (b) Suggest a fix to improve it, You can change the signature of the constructor in your design. Argue that your fix is a better design.
 
 #### 5. <br> Your team is developing a new application for your company. The new application must use a completed existing system maintained by the other team. Luckily, you only need a service from the existing system, which involves several objects collaborating to achieve. The other team has been ordered to help your team by adding any object to the existing system for you. Suppose you were to ask the other team to help by adding a new object according to one of the 23 patterns of the textbook, what pattern would you pick? Explain why.
