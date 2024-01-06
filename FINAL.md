@@ -1,4 +1,4 @@
-### 1. <br> This problem is about *composition* and *inheritance*.
+#### 1. <br> This problem is about *composition* and *inheritance*.
   (a) *True or False*: a design pattern of the object scope uses composition but not inheritance. If true, why? If false, give a counter-example. <br><br>
   *False*, the object scope pattern also applies inheritance, taking **Composite** pattern as an example. The following code shows a 
   simple **Composite** pattern where **Circle** and **Compound** inherit the method in **Shape**. <br>
