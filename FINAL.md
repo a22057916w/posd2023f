@@ -34,8 +34,10 @@
   If we were to add a new module that is not related to the composite struct, which might involve changing the **Composite Structure**. It is   
   a failure against **changes in structure**. <br>
   
-  (b) Among the 23 patterns in the textbook, which pattern can be applied to fix the failure of the strategic closure in (a)? Briefly explain how this is done.
+  (b) Among the 23 patterns in the textbook, which pattern can be applied to fix the failure of the strategic closure in (a)? Briefly explain how this is done. <br>
 
+  We can isolate the unrelated module by **Visitor** pattern, the Shape composite needs only to accept the visitor by a single **accept()**
+  method. Therefore, does not compromise the Shape composite structure. <br>
 #### 4. <br> In the **Shape** example in class, to read shape information stored on file and create corresponding shapes and their compositions in memory, we use three collaborating classes: **Parser**, **Scanner**, and **ShapeBuilder**. We wrote the constructor as in line 3 - line 6 shown below.
 ```
 class Parser {
