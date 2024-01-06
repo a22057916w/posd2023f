@@ -55,7 +55,7 @@
 ```
 class Parser {
 public:
-  Parser(std::string input)" _input(input) {
+  Parser(std::string input): _input(input) {
     _builder = ShapeBuilder::instance();
     _scanner = new Scanner(_input);
   }
