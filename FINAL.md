@@ -51,7 +51,7 @@ private:
   (b) Suggest a fix to improve it, You can change the signature of the constructor in your design. Argue that your fix is a better design.
 
 #### 5. <br> Your team is developing a new application for your company. The new application must use a completed existing system maintained by the other team. Luckily, you only need a service from the existing system, which involves several objects collaborating to achieve. The other team has been ordered to help your team by adding any object to the existing system for you. Suppose you were to ask the other team to help by adding a new object according to one of the 23 patterns of the textbook, what pattern would you pick? Explain why.
-  Apply the **Visitor** pattern. I would have the new object as a visitor class or subclass. Therefore, in my application, I only need to accept the new object as a visitor to get the service from the existing system.
+  Apply the **Visitor** pattern. I would have the new object as a visitor class or subclass. Therefore, in my application, I only need to **accept** the new object as a visitor to get the service from the existing system.
 
 #### 6. <br> Use one of the **Shape** classes to give an example in which the Proxy (207) pattern is implemented exactly like the Decorator (175) pattern.
   <br><br>
