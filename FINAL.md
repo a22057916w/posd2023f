@@ -31,9 +31,9 @@
   ```
   TEST(DerivedSqrt, LSP) {
     for(double i = 0; i < DBL_MAX / 2; i++) {
-      Base * od1 = new Derived(i);
+      Base * od = new Derived(i);
       EXPECT_NO_THROW(od->sqrt());
-      delete od1;
+      delete od;
   }
   ```
   <br><br>
