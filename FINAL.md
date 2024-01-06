@@ -19,7 +19,7 @@
   ```
   (b) *True or False*: of the two versions of  the Adapter (139) pattern, the class adapter is more flexible than the object adapter. Explain your answer. <br><br>
   *False*, the object adapter is more flexible than the class adapter. <br> 
-  The class adapter uses **multiple inheritance** to adapt the adapted(or interface), while the object adapter uses **object composition**(reference, 
+  The class adapter uses *multiple inheritance* to adapt the adapted(or interface), while the object adapter uses *object composition*(reference, 
   pointer) to combine the adapted. If there is a subclass of the adapted, the object adapter will work well with that, while the class adapter will have no access to it. 
   
 ### 2. <br> This problem is about the *Liskov Substitution Principle*. Consider a base class **Base** with a data member **r** of the type **double** and a virtual method **sqrt()** for computing the square root of **r**. When called, **sqrt()** checks if **r** is greater than or equal to 0. If so, it performs computation on **r**; if not, it throws an exception. <br> In Johnny's application, his number **r** must be between 3 and 9. Since Johnny still needs the **sqrt()** member function, he writes a class **Derived** which publicly inherits **Base**. He overrides the method **sqrt()** with the following behavior: it checks if **r** is between 3 and 9. If so, it performs computation on **r**; if not, it throws an exception.
