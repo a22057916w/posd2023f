@@ -24,8 +24,7 @@
 #### 2. <br> This problem is about the *Liskov Substitution Principle*. Consider a base class **Base** with a data member **r** of the type **double** and a virtual method **sqrt()** for computing the square root of **r**. When called, **sqrt()** checks if **r** is greater than or equal to 0. If so, it performs computation on **r**; if not, it throws an exception. <br> In Johnny's application, his number **r** must be between 3 and 9. Since Johnny still needs the **sqrt()** member function, he writes a class **Derived** which publicly inherits **Base**. He overrides the method **sqrt()** with the following behavior: it checks if **r** is between 3 and 9. If so, it performs computation on **r**; if not, it throws an exception.
   (a) *True or False*: the class **Derived** is compliant with LSP. Explain your answer. <br><br>
   *False*, the class **Derived** is not compliant with LSP. <br>
-  The derived precondition(if between 3 and 9) is **stronger** than the base class's, which violates the "Design by Contract". If a Base object 
-  is passed to the derived **sqrt()**, it will throw an unexpected error. <br>
+  The derived precondition(if between 3 and 9) is **stronger** than that of **Base** class, which violates the "Design by Contract". If a Derived object is assigned to a Base pointer. The check    condition is changed from the Base to Derived, and the user might not know the condition of the Derived class, which might lead to an unexpected error <br>
   
   (b) Write a unit test for checking compliance of LSP for **Base** and **Derived**. <br>
   ```
